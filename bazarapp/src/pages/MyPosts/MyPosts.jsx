@@ -1,7 +1,15 @@
-export default function MyPosts(){
+import "MyPosts.css"
+import {Link} from "react-router-dom"
+export default function Login(){
     return(
         <>
-        <h1>Moje inzeráty</h1>
+        <button>Upravit inzerát</button>
+        <button>Smazat inzerát</button>
+        <div></div>
         </>
     )
 }
+/*Přidat smazani a upraveni postu */
+/*Přidat img postu*/
+/*Přidat saska add dalsi*/
+/*Přidat ten div z navbaru*/
