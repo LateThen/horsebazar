@@ -1,11 +1,11 @@
+
+
 *{
     overflow: hidden;
 }
 
 .navbar{
-    position: absolute;
-    top: 0;
-    background-color: gray;
+    position: sticky;
     width: 100%;
 }
 
@@ -30,29 +30,6 @@
     justify-content: center;
 }
 
-.navbar-posts{
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.navbar-buttonPosts{
-    flex-direction: column;
-}
-
-.navbar-createPosts{
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.navbar-buttonCreatePosts{
-    flex-direction: column;
-}
-
-.navbar-myPosts{
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.navbar-buttonMyPosts{
-    flex-direction: column;
+button{
+    width: 20ch;
 }
