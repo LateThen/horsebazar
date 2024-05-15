@@ -16,7 +16,6 @@
     background-repeat: no-repeat;
     outline: solid 5px black;
     outline-offset: -5px;
-    width: 20%;
 }
 
 .navbar-title{
@@ -31,5 +30,10 @@
 }
 
 button{
-    width: 20ch;
+    width: 25%;
 }
+
+button:hover{
+    width: 30%;
+}
+
