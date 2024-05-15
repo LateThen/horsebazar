@@ -16,7 +16,8 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 let db = {
   Sequelize,
   sequelize,
-  friendstable: require("./friends")(sequelize, Sequelize),
+  horsetable: require("./horses")(sequelize, Sequelize),
+  usertable : require("./users")(sequelize, Sequelize)
 
 };
 

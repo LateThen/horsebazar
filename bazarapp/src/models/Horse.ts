@@ -1,7 +1,6 @@
 
   export type Horse = {
     id?: string;
-    email?: string;
     name?: string;
     phonenumber?: number;
     location?: string;
