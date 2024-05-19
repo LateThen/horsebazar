@@ -3,25 +3,34 @@ module.exports = (sequelize: any, Sequelize: any) => {
     "horsetable",
     {
       id: {
-        type: Sequelize.INT,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        primaryKey: true,
+        allowNull: false
       },
       name: {
-        type: Sequelize.VARCHAR,
+        type: Sequelize.STRING,
+        allowNull: false
       },
       phonenumber: {
-        type: Sequelize.INT,
+        type: Sequelize.FLOAT,
+        allowNull: false
       },
       location: {
-        type: Sequelize.VARCHAR,
+        type: Sequelize.STRING,
+        allowNull: false
       },
       price: {
-        type: Sequelize.INT,
+        type: Sequelize.FLOAT,
+        allowNull: false
       },
       description: {
-        type: Sequelize.VARCHAR,
+        type: Sequelize.STRING,
+        allowNull: false
       },
       postname: {
-        type: Sequelize.VARCHAR,
+        type: Sequelize.STRING,
+        allowNull: false
       },
     },
     {

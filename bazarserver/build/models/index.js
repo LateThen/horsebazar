@@ -16,48 +16,11 @@ const sequelize = new sequelize_1.Sequelize(db_1.dbConfig.DB, db_1.dbConfig.USER
 let db = {
     Sequelize: sequelize_1.Sequelize,
     sequelize,
-    users: require("./user")(sequelize, sequelize_1.Sequelize),
-    accountRoles: require("./accountroles")(sequelize, sequelize_1.Sequelize),
-    userAccountRoles: require("./useraccountroles")(sequelize, sequelize_1.Sequelize),
-    friendstable: require("./friends")(sequelize, sequelize_1.Sequelize),
-    achievements: require("./achievements")(sequelize, sequelize_1.Sequelize),
-    userAchievements: require("./userachievements")(sequelize, sequelize_1.Sequelize),
-    tableStable: require("./table")(sequelize, sequelize_1.Sequelize),
-    meals: require("./meals")(sequelize, sequelize_1.Sequelize),
-    food: require("./food")(sequelize, sequelize_1.Sequelize),
-    mealsfood: require("./mealsfood")(sequelize, sequelize_1.Sequelize),
-    exercises: require("./exercises")(sequelize, sequelize_1.Sequelize),
-    exercisecategory: require("./exercisecategory")(sequelize, sequelize_1.Sequelize),
-    exercisecategoryrecords: require("./exercisecategoryrecords")(sequelize, sequelize_1.Sequelize),
-    programs: require("./programs")(sequelize, sequelize_1.Sequelize),
-    programExercises: require("./programExercises")(sequelize, sequelize_1.Sequelize),
+    horsetable: require("./horse")(sequelize, sequelize_1.Sequelize),
+    usertable: require("./user")(sequelize, sequelize_1.Sequelize)
 };
-db.users.belongsToMany(db.accountRoles, {
-    through: db.userAccountRoles,
-    as: "userRole",
-});
-db.users.belongsToMany(db.users, {
-    through: db.friendstable,
-    as: "friends",
-});
-db.users.belongsToMany(db.achievements, {
-    through: db.userAchievements,
-    as: "achievement",
-});
-db.users.belongsTo(db.tableStable, {
-    onDelete: "cascade",
-    as: "tables",
-});
-db.food.belongsToMany(db.meals, {
-    through: db.mealsfood,
-    as: "food",
-});
-db.exercises.belongsToMany(db.exercisecategory, {
-    through: db.exercisecategoryrecords,
-    as: "exercises",
-});
-db.exercises.belongsToMany(db.programs, {
-    through: db.programExercises,
-    as: "program",
+db.usertable.belongsToMany(db.usertable, {
+    through: db.horsetable,
+    as: "horses",
 });
 exports.default = db;

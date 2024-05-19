@@ -3,13 +3,16 @@ module.exports = (sequelize: any, Sequelize: any) => {
       "userstable",
       {
         id: {
-          type: Sequelize.INT,
+          type: Sequelize.UUID,
+          defaultValue: Sequelize.UUIDV4,
+          primaryKey: true,
+          allowNull: false
         },
         email: {
-          type: Sequelize.VARCHAR,
+          type: Sequelize.STRING,
         },
         password: {
-            type: Sequelize.VARCHAR,
+            type: Sequelize.STRING,
         },
        
       },

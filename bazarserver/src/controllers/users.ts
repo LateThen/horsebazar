@@ -31,18 +31,26 @@ export const getUserById = async (req: Request, res: Response) => {
     res.status(500).send(error);
   }
 };
-
-export const createUser = async (req: Request, res: Response) => {
-  try {
-    const createdUser = await User.create({
-    });
-    if (!createdUser)
-    return res.status(201).send({ msg: "User created", payload: createdUser });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
-  }
-};
+export const createUser = async (req: Request, res: Response)  => {
+try {
+  const { email, password } = req.body;
+  if (!email || !password)
+    return res.status(400).send({ msg: "Missing details!" });
+  const user = await User.findOne({ where: { email: email } });
+  if (user) return res.status(400).send({ msg: "User already exists!" });
+  const salt = await genSalt(10);
+  const passwordHash = await hash(password, salt);
+  const createdUser = await User.create({
+    email: email,
+    password: passwordHash,
+  });
+  if (!createdUser)
+    return res.status(500).send({ msg: "Something went wrong!" });
+  return res.status(201).send({ msg: "User created", payload: createdUser });
+} catch (error) {
+  console.log(error);
+  res.status(500).send(error);
+}}
 
 export const updateUser = async (req: Request, res: Response) => {
   try {
