@@ -1,18 +1,16 @@
 //nastyluj to pak vojtechu, pse jeden :3
-import "MainPage.css"
+import "./MainPage.css"
+import Post from "../../components/Post/Post"
+
 export default function MainPage(){
     return(
         <>
-        <h1>Hlavní stránka fr</h1>
-        <div className="mainpage-containerofposts">
-            <div className="mainpage-specificpost">
-                <div className="mainpage-postname">Jméno inzerátu</div>
-                <div className="mainpage-postcost">Cena inzerátu</div>
-                <div className="mainpage-postimage">Obrázek inzerátu</div>
+        <div className="mainpage is-flex-direction-row is-flex">
+            <div className="mainpage-saskadd1">11/10 Saska Recommend!</div>
+            <div className="is-flex-grow-4 post-containerofposts">
+                <Post/>
             </div>
         </div>
-        <div className="mainpage-saskadd1">11/10 Saska Recommend!</div>
-        
         </>
     )
     /*image to be added*/ 
