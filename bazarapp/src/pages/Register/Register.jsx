@@ -6,10 +6,9 @@ export default function Register(){
 
     return(
         <>
-        <img src="../../img/logoImage.png" alt="" />
-        <div>
-            <p>info</p>
-            <form encType="multipart/form-data">
+        <img src="../../src/img/logoImage.png" alt="" id="image"/>
+        <div id="content">
+            <form encType="multipart/form-data" id="form">
                 <input type="text" name="email" placeholder="E-mail"/>
                 <input type="text" name="password" placeholder="Heslo"/>
                 <input type="text" name="passwordConfirm" placeholder="Heslo znovu"/>
