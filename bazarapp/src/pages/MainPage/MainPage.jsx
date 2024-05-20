@@ -10,7 +10,7 @@ export default function MainPage(){
         <NavBar/>
         <div className="mainpage is-flex-direction-row is-flex">
             <div className="mainpage-saskadd1">
-                <button className="popup-btn">X</button>
+                <button className="delete is-large popup-btn"></button>
                 11/10 Saska Recommend!
             </div>
 
@@ -18,7 +18,6 @@ export default function MainPage(){
                 <Post/>
             </div>
         </div>
-        </>
         </>
     )
     /*image to be added*/ 
