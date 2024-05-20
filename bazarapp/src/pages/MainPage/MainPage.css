@@ -1,4 +1,8 @@
 /*vojta*/
+body{
+    background-color: #2D2D2D;
+}
+
 .mainpage-saskadd1{
     background-image: url("../../img/HeavyTF2.png");
     background-position: center;
@@ -19,6 +23,13 @@
     text-align: center;
     flex-wrap: wrap;
     font-size: 2vw;
+}
+
+.popup-btn{
+    color: red;
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 10%px;
 }
 
 @media(max-width: 700px){
