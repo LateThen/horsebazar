@@ -1,0 +1,25 @@
+"use strict";
+module.exports = (sequelize, Sequelize) => {
+    return sequelize.define("achievements", {
+        name: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            primaryKey: true,
+        },
+        progress: {
+            type: Sequelize.TINYINT,
+            allowNull: false,
+        },
+        done: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: 0,
+        },
+        /* image: {
+           type: Sequelize.BLOB,
+           allowNull: true,
+         },
+         */
+    }, {
+        timestamps: true,
+    });
+};
