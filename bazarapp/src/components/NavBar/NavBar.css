@@ -8,39 +8,31 @@
     color: white;
 }*/
 
-.navbar{
+.navbar-all{
     position: sticky;
+    background-color: #3C3C3C;
 }
 
 .navbar-imageLogo{
-    background-image: url("../../img/logoImage.png");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    outline: solid 5px black;
-    outline-offset: -5px;
-    width: 12em;
-    height: 100%;
-}
-
-.navbar-title, .navbar-title-small{
-    color: white;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
-    font-size: 1.5em;
-    text-align: center;
-    width: 28ch;
-    flex-wrap: nowrap;
-    display: flex;
+    width: 100%;
+    max-width: 80px;
 }
 
 .navbar-title-image-wrap{
     width: 100%;
     display: flex;
+    align-items: center;
 }
 
-.navbar-title-small{
-    display: none;
+.navbar-title{
+    color: white;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    font-size: 1.4em;
+    text-align: center;
+    width: 28ch;
+    flex-wrap: nowrap;
+    display: flex;
 }
 
 .button-navbar{
@@ -50,6 +42,7 @@
     padding: 10px;
     border-radius: 10px;
     width: 14ch;
+    background-color: #4E4E4E;
 }
 
 .button-navbar-wrap{
@@ -63,22 +56,32 @@
     font-size: 1.7em;
 }
 
-@media(max-width: 1250px){
-    .button-navbar{
-        font-size: 1.5em;
-    }
+@media(max-width: 1023px){
     .navbar-title{
         display: none;
     }
-    .navbar-title-small{
-        display: block;
-        font-size: 1.5em;
-        width: 8ch;
+
+    .navbar-imageLogo{
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
-@media(max-width: 950px){
-    .navbar{
+@media(max-width: 1200px){
+    .button-navbar{
+        font-size: 1.2em;
+        width: 15ch;
+    }
+    .button-navbar:hover{
+        font-size: 1.4em;
+    }
+    .navbar-title{
+        font-size: 1.3em;
+    }
+}
+
+@media(max-width: 690px){
+    .navbar-all{
      flex-direction: column;
     }
  
@@ -87,17 +90,18 @@
      text-align: center;
      margin-left: 0px;
      padding: 20px;
-     font-size: 3em;
+     font-size: 1em;
      border-bottom: 1px solid rgb(49, 44, 44);
     }
+
     
     .button-navbar:hover{
-     font-size: 1.4em;
+     font-size: 1.3em;
     }
  
      .navbar-imageLogo{
-         padding: 50px;
          width: 100%;
+         max-width: 200px;
      }
      .button-navbar-wrap{
          flex-wrap: wrap;
@@ -107,17 +111,9 @@
          flex-direction: column;
          justify-content: center;
      }
- 
+
      .navbar-title{
-         display: flex;
-         justify-content: center;
-         width: 100%;
-     }
-     .navbar-title-small{
-         display: none;
-     }
-     .button-navbar{
-        font-size: 100%;
-        max-height: 200px;
+        justify-content: center;
+        display: block;
      }
  }
