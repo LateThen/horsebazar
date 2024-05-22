@@ -22,20 +22,15 @@ export default function CreatePost(){
             <div className="createpost-descriptionbox is-flex">
                 <input type="text" className="createpost-description" placeholder="Poopis" required/>
             </div>
-            
-            <input type="submit" className="createpost-button" value={"Vytvořit inzerát"} required/>
+
+
+                <input type="submit" className="createpost-button" value={"Vytvořit inzerát"} required/>
         </div>
+        
 
-        <div className="is-flex is-flex-direction-column">
-
-        <form action="/action_page.php" className="uploadFile">
-            <input type="file" className="chooseFileInput" name="filename"/>
-            <input type="submit"/>
-        </form>
-
-            <div>
-                <input type="text" className="createpost-postname" placeholder="Název inzerátu" required/>
-            </div>
+        <div className="is-responsive is-flex is-flex-direction-column">
+            <input type="file" className="uploadFile" name="filename"/>
+            <input type="text" className="createpost-postname" placeholder="Název inzerátu" required/>
         </div>
             
         </div>
