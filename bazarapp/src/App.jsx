@@ -1,8 +1,19 @@
-import AppRoutes from './pages/AppRoutes'
+
+import './global.css';
+
+import { useScrollToTop } from './/hooks/use-scroll-to-top';
+
+import Router from './routes/sections';
+import ThemeProvider from './theme';
+
+// ----------------------------------------------------------------------
+
 export default function App() {
+  useScrollToTop();
+
   return (
-    <>
-    <AppRoutes/>
-    </>
-  )
+    <ThemeProvider>
+      <Router />
+    </ThemeProvider>
+  );
 }
