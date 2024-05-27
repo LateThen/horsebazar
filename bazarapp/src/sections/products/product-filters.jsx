@@ -26,23 +26,28 @@ export const SORT_OPTIONS = [
   { value: 'priceDesc', label: 'Price: High-Low' },
   { value: 'priceAsc', label: 'Price: Low-High' },
 ];
-export const GENDER_OPTIONS = ['Men', 'Women', 'Kids'];
-export const CATEGORY_OPTIONS = ['All', 'Shose', 'Apparel', 'Accessories'];
+export const GENDER_OPTIONS = ['Male', 'Female', 'Non-binary'];
+export const CATEGORY_OPTIONS = ['All', 'Racing', 'Pet', 'For consumption'];
 export const RATING_OPTIONS = ['up4Star', 'up3Star', 'up2Star', 'up1Star'];
 export const PRICE_OPTIONS = [
-  { value: 'below', label: 'Below $25' },
-  { value: 'between', label: 'Between $25 - $75' },
-  { value: 'above', label: 'Above $75' },
+  { value: 'please get rid of this thing', label: 'Free' },
+  { value: 'below', label: 'Below $10k' },
+  { value: 'between', label: 'Between $10k - $50k' },
+  { value: 'above', label: 'Above $50k' },
 ];
 export const COLOR_OPTIONS = [
-  '#00AB55',
-  '#000000',
-  '#FFFFFF',
-  '#FFC0CB',
-  '#FF4842',
-  '#1890FF',
-  '#94D82D',
-  '#FFC107',
+  '#4A2912',
+  '#2B1A0E',
+  '#523521',
+  '#D9C29C',
+  '#CEB79C',
+  '#9C5F36',
+  '#E2D9D3',
+  '#DDB591',
+  '#DAD9DF',
+  '#B4B3B2',
+  '#E2D9D3',
+  '#774430',
 ];
 
 // ----------------------------------------------------------------------
@@ -175,7 +180,6 @@ export default function ProductFilters({ openFilter, onOpenFilter, onCloseFilter
 
             {renderPrice}
 
-            {renderRating}
           </Stack>
         </Scrollbar>
 
