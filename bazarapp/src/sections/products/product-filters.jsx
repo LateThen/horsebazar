@@ -21,33 +21,25 @@ import { ColorPicker } from '../../components/color-utils';
 // ----------------------------------------------------------------------
 
 export const SORT_OPTIONS = [
-  { value: 'featured', label: 'Featured' },
   { value: 'newest', label: 'Newest' },
   { value: 'priceDesc', label: 'Price: High-Low' },
   { value: 'priceAsc', label: 'Price: Low-High' },
 ];
-export const GENDER_OPTIONS = ['Male', 'Female', 'Non-binary'];
-export const CATEGORY_OPTIONS = ['All', 'Racing', 'Pet', 'For consumption'];
-export const RATING_OPTIONS = ['up4Star', 'up3Star', 'up2Star', 'up1Star'];
+export const GENDER_OPTIONS = ['Male', 'Female'];
+export const CATEGORY_OPTIONS = ['Racing', 'Pet', 'For consumption'];
+export const RATING_OPTIONS = [];
 export const PRICE_OPTIONS = [
-  { value: 'please get rid of this thing', label: 'Free' },
   { value: 'below', label: 'Below $10k' },
   { value: 'between', label: 'Between $10k - $50k' },
   { value: 'above', label: 'Above $50k' },
 ];
 export const COLOR_OPTIONS = [
-  '#4A2912',
   '#2B1A0E',
   '#523521',
-  '#D9C29C',
-  '#CEB79C',
   '#9C5F36',
-  '#E2D9D3',
   '#DDB591',
+  '#D9C29C',
   '#DAD9DF',
-  '#B4B3B2',
-  '#E2D9D3',
-  '#774430',
 ];
 
 // ----------------------------------------------------------------------
@@ -69,7 +61,7 @@ export default function ProductFilters({ openFilter, onOpenFilter, onCloseFilter
       <Typography variant="subtitle2">Category</Typography>
       <RadioGroup>
         {CATEGORY_OPTIONS.map((item) => (
-          <FormControlLabel key={item} value={item} control={<Radio />} label={item} />
+          <FormControlLabel key={item} value={item} control={<Checkbox />} label={item} />
         ))}
       </RadioGroup>
     </Stack>
@@ -83,7 +75,7 @@ export default function ProductFilters({ openFilter, onOpenFilter, onCloseFilter
         selected={[]}
         colors={COLOR_OPTIONS}
         onSelectColor={(color) => [].includes(color)}
-        sx={{ maxWidth: 38 * 4 }}
+        sx={{ maxWidth: 38 * 6 }}
       />
     </Stack>
   );
