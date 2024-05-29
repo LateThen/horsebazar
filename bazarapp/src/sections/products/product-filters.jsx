@@ -21,11 +21,10 @@ import { ColorPicker } from '../../components/color-utils';
 // ----------------------------------------------------------------------
 
 export const SORT_OPTIONS = [
-  { value: 'newest', label: 'Newest' },
   { value: 'priceDesc', label: 'Price: High-Low' },
   { value: 'priceAsc', label: 'Price: Low-High' },
 ];
-export const GENDER_OPTIONS = ['Male', 'Female'];
+export const GENDER_OPTIONS = ['Male', 'Female', 'Non-binary'];
 export const CATEGORY_OPTIONS = ['Racing', 'Pet', 'For consumption'];
 export const RATING_OPTIONS = [];
 export const PRICE_OPTIONS = [

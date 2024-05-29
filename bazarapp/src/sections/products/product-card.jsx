@@ -5,30 +5,14 @@ import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { Link as ReactLink } from 'react-router-dom';
 
 import { fCurrency } from '../../utils/format-number';
-
-import Label from '../../components/label';
 import { ColorPreview } from '../../components/color-utils';
 
 // ----------------------------------------------------------------------
 
 export default function ShopProductCard({ product }) {
-  const renderStatus = (
-    <Label
-      variant="filled"
-      color={(product.status === 'sale' && 'error') || 'info'}
-      sx={{
-        zIndex: 9,
-        top: 16,
-        right: 16,
-        position: 'absolute',
-        textTransform: 'uppercase',
-      }}
-    >
-      {product.status}
-    </Label>
-  );
 
   const renderImg = (
     <Box
@@ -37,8 +21,9 @@ export default function ShopProductCard({ product }) {
       src={product.cover}
       sx={{
         top: 0,
-        width: 1,
+        width: 0.3,
         height: 1,
+        right: 0,
         objectFit: 'cover',
         position: 'absolute',
       }}
@@ -64,21 +49,24 @@ export default function ShopProductCard({ product }) {
 
   return (
     <Card>
-      <Box sx={{ pt: '100%', position: 'relative' }}>
-        {product.status && renderStatus}
+      <Stack direction="row">
+      <Stack spacing={2} sx={{ p: 5 }} width="25vh">
 
-        {renderImg}
-      </Box>
-
-      <Stack spacing={2} sx={{ p: 3 }}>
-        <Link color="inherit" underline="hover" variant="subtitle2" noWrap>
+        <Link color="inherit" variant="subtitle2" noWrap underline='hover'>
           {product.name}
         </Link>
 
-        <Stack direction="row" alignItems="center" justifyContent="space-between">
+        <Stack direction="row" alignItems="center" justifyContent="left">
           <ColorPreview colors={product.colors} />
           {renderPrice}
         </Stack>
+      </Stack>
+      <Stack sx={{ p: 3 }} alignItems="center" justifyContent="center" noWrap width="60vh">
+        <a>Description here. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt eaque aspernatur voluptatum recusandae quisquam, quia harum molestiae optio pariatur fugit nihil tempore illo delectus quo perferendis, veniam, voluptatibus molestias architecto.</a>
+      </Stack>
+      <ReactLink to="/">
+        {renderImg}
+      </ReactLink>
       </Stack>
     </Card>
   );
