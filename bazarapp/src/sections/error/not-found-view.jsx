@@ -52,16 +52,10 @@ export default function NotFoundView() {
             Sorry, we couldn’t find the page you’re looking for. Perhaps you’ve mistyped the URL? Be
             sure to check your spelling.
           </Typography>
-
-          <Box
-            component="img"
-            src="/assets/illustrations/illustration_404.svg"
-            sx={{
-              mx: 'auto',
-              height: 260,
-              my: { xs: 5, sm: 10 },
-            }}
-          />
+          <Typography sx={{ color: 'text.secondary' }}>
+            Error 404
+            <hr />
+          </Typography>
 
           <Button href="/" size="large" variant="contained" component={RouterLink}>
             Go to Home

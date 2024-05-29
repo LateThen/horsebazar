@@ -10,9 +10,11 @@ import FormControl from "@mui/material/FormControl";
 import InputAdornment from "@mui/material/InputAdornment";
 import Typography from "@mui/material/Typography";
 
+
 // ----------------------------------------------------------------------
 
 export default function BlogView() {
+
   const [amount, setAmount] = useState("");
   const [phone, setPhone] = useState("");
   const [file, setFile] = useState(null);
@@ -20,6 +22,7 @@ export default function BlogView() {
   const [error, setError] = useState("");
   const [nazev, setNazev] = useState("");
   const [popis, setPopis] = useState("");
+
 
   const handleAmountChange = (event) => {
     const value = event.target.value;
@@ -39,12 +42,14 @@ export default function BlogView() {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
       const fileType = selectedFile.type;
+
       if (!fileType.startsWith("image/")) {
         setError("Please upload a valid image file");
         setFile(null);
         setFilePreview("");
       } else {
         setError("");
+
         setFile(selectedFile);
         const reader = new FileReader();
         reader.onloadend = () => {
@@ -58,6 +63,7 @@ export default function BlogView() {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Zde můžete přidat logiku pro odeslání formuláře
+
     console.log("Form submitted");
     console.log("Selected file:", file);
   };
@@ -68,6 +74,7 @@ export default function BlogView() {
 
   const handlePopisChange = (event) => {
     setPopis(event.target.value);
+
   };
 
   return (
@@ -76,6 +83,7 @@ export default function BlogView() {
         <form onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid xs={12} md={8}>
+
               <Box sx={{ p: 2, display: "flex", flexDirection: "column" }}>
                 <TextField
                   label="Jméno"
@@ -220,6 +228,7 @@ export default function BlogView() {
           </Box>
           <Button variant="contained" type="submit" size="large" fullWidth>
             Vytvořit inzerát
+
           </Button>
         </form>
       </Container>
