@@ -4,9 +4,9 @@ import { faker } from '@faker-js/faker';
 // ----------------------------------------------------------------------
 
 const PRODUCT_NAME = [
-  'Nike Air Force 1 NDESTRUKT',
-  'Nike Space Hippie 04',
-  'Nike Air Zoom Pegasus 37 A.I.R. Chaz Bear',
+  'Saska insane',
+  'HEHEHEHOOOOOOOO',
+  'Feddy Chaz Bear',
   'Nike Blazer Low 77 Vintage',
   'Nike ZoomX SuperRep Surge',
   'Zoom Freak 2',
@@ -22,7 +22,7 @@ const PRODUCT_NAME = [
   'Nike DBreak-Type',
   'Nike Air Max Up',
   'Nike Air Max 270 React ENG',
-  'NikeCourt Royale',
+  'Fortnite Victory Royale',
   'Nike Air Zoom Pegasus 37 Premium',
   'Nike Air Zoom SuperRep',
   'NikeCourt Royale',
@@ -30,14 +30,12 @@ const PRODUCT_NAME = [
   'Nike React Infinity Run Flyknit A.I.R. Chaz Bear',
 ];
 const PRODUCT_COLOR = [
-  '#00AB55',
-  '#000000',
-  '#FFFFFF',
-  '#FFC0CB',
-  '#FF4842',
-  '#1890FF',
-  '#94D82D',
-  '#FFC107',
+  '#2B1A0E',
+  '#523521',
+  '#9C5F36',
+  '#DDB591',
+  '#D9C29C',
+  '#DAD9DF',
 ];
 
 // ----------------------------------------------------------------------
@@ -59,6 +57,6 @@ export const products = [...Array(24)].map((_, index) => {
       (setIndex === 23 && PRODUCT_COLOR.slice(4, 6)) ||
       (setIndex === 24 && PRODUCT_COLOR.slice(5, 6)) ||
       PRODUCT_COLOR,
-    status: sample(['sale', 'new', '', '']),
+    status: sample(['']),
   };
 });

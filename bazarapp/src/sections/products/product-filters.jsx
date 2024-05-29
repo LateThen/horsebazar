@@ -21,28 +21,24 @@ import { ColorPicker } from '../../components/color-utils';
 // ----------------------------------------------------------------------
 
 export const SORT_OPTIONS = [
-  { value: 'featured', label: 'Featured' },
-  { value: 'newest', label: 'Newest' },
   { value: 'priceDesc', label: 'Price: High-Low' },
   { value: 'priceAsc', label: 'Price: Low-High' },
 ];
-export const GENDER_OPTIONS = ['Men', 'Women', 'Kids'];
-export const CATEGORY_OPTIONS = ['All', 'Shose', 'Apparel', 'Accessories'];
-export const RATING_OPTIONS = ['up4Star', 'up3Star', 'up2Star', 'up1Star'];
+export const GENDER_OPTIONS = ['Male', 'Female', 'Non-binary'];
+export const CATEGORY_OPTIONS = ['Racing', 'Pet', 'For consumption'];
+export const RATING_OPTIONS = [];
 export const PRICE_OPTIONS = [
-  { value: 'below', label: 'Below $25' },
-  { value: 'between', label: 'Between $25 - $75' },
-  { value: 'above', label: 'Above $75' },
+  { value: 'below', label: 'Below $10k' },
+  { value: 'between', label: 'Between $10k - $50k' },
+  { value: 'above', label: 'Above $50k' },
 ];
 export const COLOR_OPTIONS = [
-  '#00AB55',
-  '#000000',
-  '#FFFFFF',
-  '#FFC0CB',
-  '#FF4842',
-  '#1890FF',
-  '#94D82D',
-  '#FFC107',
+  '#2B1A0E',
+  '#523521',
+  '#9C5F36',
+  '#DDB591',
+  '#D9C29C',
+  '#DAD9DF',
 ];
 
 // ----------------------------------------------------------------------
@@ -64,7 +60,7 @@ export default function ProductFilters({ openFilter, onOpenFilter, onCloseFilter
       <Typography variant="subtitle2">Category</Typography>
       <RadioGroup>
         {CATEGORY_OPTIONS.map((item) => (
-          <FormControlLabel key={item} value={item} control={<Radio />} label={item} />
+          <FormControlLabel key={item} value={item} control={<Checkbox />} label={item} />
         ))}
       </RadioGroup>
     </Stack>
@@ -78,7 +74,7 @@ export default function ProductFilters({ openFilter, onOpenFilter, onCloseFilter
         selected={[]}
         colors={COLOR_OPTIONS}
         onSelectColor={(color) => [].includes(color)}
-        sx={{ maxWidth: 38 * 4 }}
+        sx={{ maxWidth: 38 * 6 }}
       />
     </Stack>
   );
@@ -175,7 +171,6 @@ export default function ProductFilters({ openFilter, onOpenFilter, onCloseFilter
 
             {renderPrice}
 
-            {renderRating}
           </Stack>
         </Scrollbar>
 
