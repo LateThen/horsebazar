@@ -110,7 +110,7 @@ export default function Nav({ openNav, onCloseNav }) {
             height: 1,
             position: 'fixed',
             width: NAV.WIDTH,
-            borderRight: (theme) => `dashed 1px ${theme.palette.divider}`,
+            borderRight: (theme) => `dashed 3px ${theme.palette.divider}`,
           }}
         >
           {renderContent}

@@ -32,6 +32,7 @@ const navConfig = [
   title: 'register',
   path: '/register',
   icon: icon('ic_lock'),
+  className: 'config-navigation-register-item',
 },
 
 
