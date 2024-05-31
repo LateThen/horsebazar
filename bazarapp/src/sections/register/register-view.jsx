@@ -4,8 +4,6 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
@@ -22,7 +20,7 @@ import Iconify from '../../components/iconify';
 
 // ----------------------------------------------------------------------
 
-export default function LoginView() {
+export default function RegisterView() {
   const theme = useTheme();
 
   const router = useRouter();
@@ -35,7 +33,14 @@ export default function LoginView() {
 
   const renderForm = (
     <>
+      <Typography variant="h4" gutterBottom>
+        Register
+      </Typography>
+
+      <br></br>
+      
       <Stack spacing={3}>
+        <TextField name="name" label="Name" />
         <TextField name="email" label="Email address" />
 
         <TextField
@@ -64,7 +69,7 @@ export default function LoginView() {
         color="inherit"
         onClick={handleClick}
       >
-        Login
+        Create account 
       </LoadingButton>
     </>
   );
@@ -95,14 +100,6 @@ export default function LoginView() {
             maxWidth: 420,
           }}
         >
-          <Typography variant="h4">Sign in to Minimal</Typography>
-
-          <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
-            Don’t have an account?
-            <Link variant="subtitle2" sx={{ ml: 0.5 }}>
-              Get started
-            </Link>
-          </Typography>
           {renderForm}
         </Card>
       </Stack>
