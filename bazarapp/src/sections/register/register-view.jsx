@@ -34,7 +34,7 @@ export default function RegisterView() {
   const renderForm = (
     <>
       <Typography variant="h4" gutterBottom>
-        Register
+        Sign Up
       </Typography>
 
       <br></br>
