@@ -14,7 +14,7 @@ const navConfig = [
   },
   {
     title: 'My Posts',
-    path: '/myposts',
+    path: '/mypost',
     icon: icon('ic_user'),
   },
   {
@@ -28,6 +28,12 @@ const navConfig = [
     path: '/login',
     icon: icon('ic_lock'),
   },
+  {
+  title: 'register',
+  path: '/register',
+  icon: icon('ic_lock'),
+},
+
 
 ];
 
