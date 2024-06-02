@@ -1,5 +1,5 @@
 export const createHorse = async (formData) => {
-  const res = await fetch("http://localhost:3000/api/v1/horse", {
+  const res = await fetch("http://localhost:3000/api/v1/horses", {
     body: formData,
     method: "POST",
   });
@@ -11,7 +11,7 @@ export const createHorse = async (formData) => {
 };
 
 export const getHorses = async () => {
-  const req = await fetch("http://localhost:3000/api/v1/horse", {
+  const req = await fetch("http://localhost:3000/api/v1/horses", {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
