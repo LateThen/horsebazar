@@ -25,7 +25,7 @@ export default function MyPostView() {
   return (
     <Container>
       <Typography variant="h4" sx={{ mb: 5 }}>
-        Moje inzeráty
+        Posts
       </Typography>
 
       <Stack
