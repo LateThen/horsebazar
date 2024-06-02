@@ -24,20 +24,6 @@ export default function BlogView() {
   const [popis, setPopis] = useState("");
 
 
-  const handleAmountChange = (event) => {
-    const value = event.target.value;
-    if (!isNaN(value) && /^\d*$/.test(value)) {
-      setAmount(value);
-    }
-  };
-
-  const handlePhoneChange = (event) => {
-    const value = event.target.value;
-    if (!isNaN(value) && /^\d*$/.test(value) && value.length <= 9) {
-      setPhone(value);
-    }
-  };
-
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
@@ -60,21 +46,26 @@ export default function BlogView() {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>,
+    SelectChangeEvent
+  ) => {
     event.preventDefault();
-    // Zde můžete přidat logiku pro odeslání formuláře
 
-    console.log("Form submitted");
-    console.log("Selected file:", file);
+    const formDataToSend = new FormData();
+    for (const [key, value] of Object.entries(formData)) {
+      formDataToSend.append(key, value);
+    }
+    formDataToSend.append("photo", imgRef.current.files[0]);
+    console.log(...formDataToSend);
+    const post = await createPost(formDataToSend);
+    if (post.status === 201) return navigate("/");
+    if (post.status === 400) return setInfo(post.msg);
+    if (post.status === 500) return navigate("/");
   };
 
-  const handleNazevChange = (event) => {
-    setNazev(event.target.value);
-  };
-
-  const handlePopisChange = (event) => {
-    setPopis(event.target.value);
-
+  const handleChange = async (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
@@ -90,12 +81,13 @@ export default function BlogView() {
                   sx={{ marginBottom: 2 }}
                   required
                   fullWidth
+                  onChange={handleChange}
                 />
                 <TextField
                   label="Telefon"
                   type="text"
                   value={phone}
-                  onChange={handlePhoneChange}
+                  onChange={handleChange}
                   inputProps={{ maxLength: 9 }}
                   sx={{ marginBottom: 2 }}
                   required
@@ -106,6 +98,10 @@ export default function BlogView() {
                   sx={{ marginBottom: 2 }}
                   required
                   fullWidth
+                  id="adress"
+                  name="adress"
+                  autoComplete="adress"
+                  onChange={handleChange}
                 />
 
                 <FormControl required fullWidth>
@@ -119,7 +115,7 @@ export default function BlogView() {
                     }
                     label="Cena"
                     value={amount}
-                    onChange={handleAmountChange}
+                    onChange={handleChange}
                     inputProps={{
                       inputMode: "numeric",
                       pattern: "[0-9]*",
@@ -178,7 +174,7 @@ export default function BlogView() {
                   multiline
                   minRows={1}
                   maxRows={3}
-                  onChange={handleNazevChange}
+                  onChange={handleChange}
                 />
                 <Typography
                   variant="caption"
@@ -211,7 +207,11 @@ export default function BlogView() {
               minRows={4}
               maxRows={10}
               value={popis}
-              onChange={handlePopisChange}
+              name="description"     
+              type="description"
+              id="description"
+              autoComplete="new-description"
+              onChange={handleChange}
             />
             <Typography
               variant="caption"
