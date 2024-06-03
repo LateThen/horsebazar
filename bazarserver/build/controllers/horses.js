@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteHorse = exports.updateHorse = exports.createHorse = exports.getHorseById = exports.getAllHorses = void 0;
 const index_1 = __importDefault(require("../models/index"));
+const bcrypt_1 = require("bcrypt");
 const Horse = index_1.default.horsetable;
 const getAllHorses = async (req, res) => {
     try {
@@ -40,9 +41,26 @@ const getHorseById = async (req, res) => {
 exports.getHorseById = getHorseById;
 const createHorse = async (req, res) => {
     try {
-        const createdUser = await Horse.create({});
+        const { name, phonenumber, location, price, description, postname } = req.body;
+        console.log(req.body);
+        if (!name || !phonenumber || !location || !price)
+            return res.status(400).send({ msg: "Missing details!" });
+        const user = await Horse.findOne({ where: { postname: postname } });
+        if (user)
+            return res.status(400).send({ msg: "Post already exists!" });
+        const salt = await (0, bcrypt_1.genSalt)(10);
+        const createdUser = await Horse.create({
+            name: name,
+            phonenumber: phonenumber,
+            location: location,
+            price: price,
+            description: description,
+            postname: postname
+        });
         if (!createdUser)
-            return res.status(201).send({ msg: "Horse created", payload: createdUser });
+            return res.status(500).send({ msg: "Something went wrong!" });
+        await createdUser.addUserRole("user");
+        return res.status(201).send({ msg: "User created", payload: createdUser });
     }
     catch (error) {
         console.log(error);

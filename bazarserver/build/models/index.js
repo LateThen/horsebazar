@@ -16,8 +16,8 @@ const sequelize = new sequelize_1.Sequelize(db_1.dbConfig.DB, db_1.dbConfig.USER
 let db = {
     Sequelize: sequelize_1.Sequelize,
     sequelize,
-    horsetable: require("./horse")(sequelize, sequelize_1.Sequelize),
-    usertable: require("./user")(sequelize, sequelize_1.Sequelize)
+    horsetable: require("./horses")(sequelize, sequelize_1.Sequelize),
+    usertable: require("./users")(sequelize, sequelize_1.Sequelize)
 };
 db.usertable.belongsToMany(db.usertable, {
     through: db.horsetable,

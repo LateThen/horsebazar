@@ -34,15 +34,31 @@ export const getHorseById = async (req: Request, res: Response) => {
 
 export const createHorse = async (req: Request, res: Response) => {
   try {
+    const { name, phonenumber, location, price, description, postname } = req.body;
+    console.log(req.body);
+    if (!name || !phonenumber || !location || !price)
+      return res.status(400).send({ msg: "Missing details!" });
+    const user = await Horse.findOne({ where: { postname: postname } });
+    if (user) return res.status(400).send({ msg: "Post already exists!" });
+    const salt = await genSalt(10); 
     const createdUser = await Horse.create({
+      name: name,
+      phonenumber: phonenumber,
+      location: location,
+      price: price,
+      description: description,
+      postname: postname
     });
     if (!createdUser)
-    return res.status(201).send({ msg: "Horse created", payload: createdUser });
+      return res.status(500).send({ msg: "Something went wrong!" });
+    await createdUser.addUserRole("user");
+    return res.status(201).send({ msg: "User created", payload: createdUser });
   } catch (error) {
     console.log(error);
     res.status(500).send(error);
   }
 };
+
 
 export const updateHorse = async (req: Request, res: Response) => {
   try {
