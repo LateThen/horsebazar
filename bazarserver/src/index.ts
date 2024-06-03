@@ -26,7 +26,6 @@ db.sequelize.sync({ force: true, alter: true }).then(async () => {
 });
 
 app.use(`/api/v${process.env.API_VER}/horses`, require("./routes/horses"));
-app.use(`/api/v${process.env.API_VER}/users`, require("./routes/users"));
 app.listen(PORT, () => {
   console.log(`App is running on ${PORT}`);
 });

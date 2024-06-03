@@ -38,6 +38,7 @@ export const getHorses = async () => {
     price?: number;
     description?: string;
     postname?: string;
+    photo? : string;
     //pridani obrazku
   };
   

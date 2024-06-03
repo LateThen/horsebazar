@@ -17,10 +17,5 @@ let db = {
     Sequelize: sequelize_1.Sequelize,
     sequelize,
     horsetable: require("./horses")(sequelize, sequelize_1.Sequelize),
-    usertable: require("./users")(sequelize, sequelize_1.Sequelize)
 };
-db.usertable.belongsToMany(db.usertable, {
-    through: db.horsetable,
-    as: "horses",
-});
 exports.default = db;

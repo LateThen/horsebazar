@@ -77,7 +77,8 @@ export default function BlogView() {
       price: data.get("price") as any,
       description: data.get("description") as string,
       postname: data.get("postname") as string,
-    });
+      photo: data.get("photo") as string
+     });
     if (user.status == 201) return navigate("/");
     if (user.status == 400) return setInfo(user.msg);
     if (user.status == 500) return navigate("/error");
@@ -186,6 +187,8 @@ export default function BlogView() {
                   label="Přiložit soubor"
                   type="file"
                   accept="image/*"
+                  id="photo"
+                  name="photo"
                   onChange={handleFileChange}
                   InputLabelProps={{ shrink: true }}
                   fullWidth
