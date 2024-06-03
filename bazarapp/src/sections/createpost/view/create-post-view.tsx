@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createHorse } from "../../../models/Horse";
+import { createHorse, getUploads } from "../../../models/Horse";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -11,40 +11,20 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import InputAdornment from "@mui/material/InputAdornment";
 import Typography from "@mui/material/Typography";
-
-
-// ----------------------------------------------------------------------
+import { create } from "domain";
 
 export default function BlogView() {
-
+  const [info, setInfo] = useState();
   const [amount, setAmount] = useState("");
   const [phone, setPhone] = useState("");
   const [file, setFile] = useState(null);
   const [filePreview, setFilePreview] = useState("");
+  const [formData, setFormData] = useState({});
   const [error, setError] = useState("");
   const [nazev, setNazev] = useState("");
   const [popis, setPopis] = useState("");
-  const [info, setInfo] = useState();
-  const [formData, setFormData] = useState({});
   const navigate = useNavigate();
   const imgRef = useRef<HTMLInputElement>(null);
-
-
-
-  
-  const handleAmountChange = (event) => {
-    const value = event.target.value;
-    if (!isNaN(value) && /^\d*$/.test(value)) {
-      setAmount(value);
-    }
-  };
-
-  const handlePhoneChange = (event) => {
-    const value = event.target.value;
-    if (!isNaN(value) && /^\d*$/.test(value) && value.length <= 9) {
-      setPhone(value);
-    }
-  };
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -67,54 +47,24 @@ export default function BlogView() {
       }
     }
   };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const user = await createHorse({
-      name: data.get("name") as string,
-      phonenumber: data.get("phonenumber") as any,
-      location: data.get("location") as string,
-      price: data.get("price") as any,
-      description: data.get("description") as string,
-      postname: data.get("postname") as string,
-      photo: data.get("photo") as string
-     });
-    if (user.status == 201) return navigate("/");
-    if (user.status == 400) return setInfo(user.msg);
-    if (user.status == 500) return navigate("/error");
-  };
-
-/*
-  const handleSubmit = async (
-    event: React.FormEvent<HTMLFormElement>,
-    SelectChangeEvent
-  ) => {
-    event.preventDefault();
-
+  
     const formDataToSend = new FormData();
     for (const [key, value] of Object.entries(formData)) {
       formDataToSend.append(key, value);
     }
-    //formDataToSend.append("photo", imgRef.current.files[0]);
+    formDataToSend.append("photo", imgRef.current.files[0]);
     console.log(...formDataToSend);
     const post = await createHorse(formDataToSend);
     if (post.status === 201) return navigate("/");
-    if (post.status === 400) return setInfo(post.msg);
+    //if (post.status === 400) return setInfo(getHorses.msg);
     if (post.status === 500) return navigate("/");
   };
-*/
   const handleChange = async (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const handleNazevChange = (event) => {
-    setNazev(event.target.value);
-  };
-
-  const handlePopisChange = (event) => {
-    setPopis(event.target.value);
-
-  };
-
 
   return (
     <>
@@ -122,7 +72,6 @@ export default function BlogView() {
         <form onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid xs={12} md={8}>
-
               <Box sx={{ p: 2, display: "flex", flexDirection: "column" }}>
                 <TextField
                   id="name"
@@ -138,10 +87,8 @@ export default function BlogView() {
                   id="phonenumber"
                   label="Telefon"
                   type="text"
-                  name="phonenumber"
-                  autoComplete="phonenumber"
-                  value={phone}
-                  onChange={handlePhoneChange}
+                  name="phonenumber" 
+                 onChange={handleChange}
                   inputProps={{ maxLength: 9 }}
                   sx={{ marginBottom: 2 }}
                   required
@@ -168,13 +115,8 @@ export default function BlogView() {
                       <InputAdornment position="start">Kč</InputAdornment>
                     }
                     label="Cena"
-                    value={amount}
-                    
-                  
-           
-                  name="price"
-                  autoComplete="price"
-                    onChange={handleAmountChange}
+                    name="price"
+                    onChange={handleChange}
                     inputProps={{
                       inputMode: "numeric",
                       pattern: "[0-9]*",
@@ -183,16 +125,12 @@ export default function BlogView() {
                   />
                 </FormControl>
 
-                <TextField
-                  label="Přiložit soubor"
-                  type="file"
+                <input
+                  ref={imgRef} type="file" 
+                  name="photo" 
+                  id="photo"   
                   accept="image/*"
-                  id="photo"
-                  name="photo"
-                  onChange={handleFileChange}
-                  InputLabelProps={{ shrink: true }}
-                  fullWidth
-                  sx={{ marginTop: 5 }}
+                  onChange={handleFileChange} // Ensure this is correctly assigned
                 />
                 {error && <Typography color="error">{error}</Typography>}
               </Box>
@@ -226,18 +164,17 @@ export default function BlogView() {
               )}
               <Box sx={{ position: "relative", width: "100%" }}>
                 <TextField
-                id="postname"
+                  id="postname"
                   label="Název"
                   name="postname"
                   sx={{ marginTop: 2 }}
                   inputProps={{ maxLength: 64 }}
                   fullWidth
                   required
-                  value={nazev}
                   multiline
                   minRows={1}
                   maxRows={3}
-                  onChange={handleNazevChange}
+                  onChange={handleChange}
                 />
                 <Typography
                   variant="caption"
@@ -269,12 +206,11 @@ export default function BlogView() {
               multiline
               minRows={4}
               maxRows={10}
-              value={popis}
-              name="description"     
+              name="description"
               type="description"
               id="description"
               autoComplete="new-description"
-              onChange={handlePopisChange}
+              onChange={handleChange}
             />
             <Typography
               variant="caption"
@@ -291,10 +227,8 @@ export default function BlogView() {
           </Box>
           <Button variant="contained" type="submit" size="large" fullWidth>
             Vytvořit inzerát
-
           </Button>
         </form>
       </Container>
     </>
-  );
-}
+  );}
