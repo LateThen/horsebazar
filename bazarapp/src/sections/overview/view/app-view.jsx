@@ -1,96 +1,20 @@
-import { faker } from '@faker-js/faker';
-
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
 import Iconify from '../../../components/iconify';
+import Box  from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 
 
 // ----------------------------------------------------------------------
 
 export default function AppView() {
   return (
-    <Container maxWidth="xl">
-      <Typography variant="h4" sx={{ mb: 5 }}>
-      ██████████▀▀▀▀▀▀▀▀▀▀▀▀▀██████████
-█████▀▀░░░░░░░░░░░░░░░░░░░▀▀█████
-███▀░░░░░░░░░░░░░░░░░░░░░░░░░▀███
-██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░██
-█░░░░░░▄▄▄▄▄▄░░░░░░░░▄▄▄▄▄▄░░░░░█
-█░░░▄██▀░░░▀██░░░░░░██▀░░░▀██▄░░█
-█░░░██▄░░▀░░▄█░░░░░░█▄░░▀░░▄██░░█
-██░░░▀▀█▄▄▄██░░░██░░░██▄▄▄█▀▀░░██
-███░░░░░░▄▄▀░░░████░░░▀▄▄░░░░░███
-██░░░░░█▄░░░░░░▀▀▀▀░░░░░░░█▄░░░██
-██░░░▀▀█░█▀▄▄▄▄▄▄▄▄▄▄▄▄▄▀██▀▀░░██
-███░░░░░▀█▄░░█░░█░░░█░░█▄▀░░░░███
-████▄░░░░░░▀▀█▄▄█▄▄▄█▄▀▀░░░░▄████
-███████▄▄▄▄░░░░░░░░░░░░▄▄▄███████
+    <Box sx={{ backgroundImage: 'url(../../src/img/blackMarketer.png)', backgroundSize: "cover", backgroundRepeat: "no-repeat"}} width="1" height="1">
+      <Typography variant="h4" textAlign="center" color="white">
+        I trade in any kind of horse... Whether it’s stolen horses, or even prohibited types... Take a look...
       </Typography>
-
-      <Grid container spacing={3}>
-        <Grid xs={12} sm={6} md={3}>
-      
-        </Grid>
-
-        <Grid xs={12} sm={6} md={3}>
-  
-        </Grid>
-
-        <Grid xs={12} sm={6} md={3}>
-  
-        </Grid>
-
-        <Grid xs={12} sm={6} md={3}>
-   
-        </Grid>
-
-        <Grid xs={12} md={6} lg={8}>
-
-        
-        </Grid>
-
-        <Grid xs={12} md={6} lg={4}>
-    
-        
-        </Grid>
-
-        <Grid xs={12} md={6} lg={8}>
-        
-    
-        
-        </Grid>
-
-        <Grid xs={12} md={6} lg={4}>
-      
-        
-    
-        </Grid>
-
-        <Grid xs={12} md={6} lg={8}>
-         
-     
-        
-        </Grid>
-
-        <Grid xs={12} md={6} lg={4}>
-        
-       
-        
-        </Grid>
-
-        <Grid xs={12} md={6} lg={4}>
-      
-      
-        </Grid>
-
-        <Grid xs={12} md={6} lg={8}>
-      
-            
-     
-        </Grid>
-      </Grid>
-    </Container>
+    </Box>
   );
 }
