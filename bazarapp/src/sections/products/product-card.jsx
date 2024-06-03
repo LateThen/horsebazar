@@ -6,22 +6,25 @@ import Card from "@mui/material/Card";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { Link as ReactLink } from "react-router-dom";
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 import { fCurrency } from "../../utils/format-number";
-import { ColorPreview } from "../../components/color-utils";
+import { ColorPreview } from "../../components/color-utils"
 
 // ----------------------------------------------------------------------
 
-export default function ShopProductCard({ product }) {
+export default function MyPostCard({ product }) {
   const renderImg = (
     <Box
       component="img"
       alt={product.name}
       src={product.cover}
       sx={{
-        height: "20vh",
+        height: "100%",
         objectFit: "cover",
-        width: "100vh",
+        width: "100%",
       }}
     />
   );
@@ -49,17 +52,20 @@ export default function ShopProductCard({ product }) {
         direction={{ xs: "column", md: "row" }}
         spacing={2}
         sx={{
-          justifyContent: { md: "center" },
-          alignItems: { md: "center" },
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
-        <Box sx={{
-          pl: 1,
-          pt: 1,
-        }}>
+        <Box
+          sx={{
+            pl: 1,
+            pt: 1,
+            flexGrow: 1,
+          }}
+        >
           <Stack
             spacing={2}
-            sx={{pl: 2, flexGrow: 1, textAlign: { xs: "center", md: "left" } }}
+            sx={{ pl: 2, textAlign: { xs: "center", md: "left" } }}
           >
             <Link color="inherit" variant="subtitle2" noWrap underline="hover">
               {product.name}
@@ -68,7 +74,7 @@ export default function ShopProductCard({ product }) {
             <Stack
               direction="row"
               alignItems="center"
-              justifyContent={{ xs: "center", md: "flex-start"}}
+              justifyContent={{ xs: "center", md: "flex-start" }}
             >
               <ColorPreview colors={product.colors} />
               {renderPrice}
@@ -77,13 +83,16 @@ export default function ShopProductCard({ product }) {
           <Stack
             sx={{
               p: 2,
-              flexGrow: 1,
               textAlign: { xs: "center", md: "left" },
               justifyContent: "center",
             }}
           >
-            <Typography>
+            <Typography sx={{ textOverflow: "ellipsis", overflow: "hidden", textWrap: {md: "nowrap", sm: "wrap"}, maxWidth: {xs: "350px", sm: "600px"}, maxHeight: "100px" }}>
               Description here. Lorem, ipsum dolor sit amet consectetur
+              adipisicing elit. Incidunt eaque aspernatur voluptatum recusandae
+              quisquam, quia harum molestiae optio pariatur fugit nihil tempore
+              illo delectus quo perferendis, veniam, voluptatibus molestias
+              architecto.Description here. Lorem, ipsum dolor sit amet consectetur
               adipisicing elit. Incidunt eaque aspernatur voluptatum recusandae
               quisquam, quia harum molestiae optio pariatur fugit nihil tempore
               illo delectus quo perferendis, veniam, voluptatibus molestias
@@ -91,14 +100,17 @@ export default function ShopProductCard({ product }) {
             </Typography>
           </Stack>
         </Box>
+
         <Box
           component={ReactLink}
           to="/"
           sx={{
-            width: { xs: "100%", md: "auto" },
-            flexGrow: { xs: 0, md: 1 },
-            height: { xs: "auto", md: "100%" },
+            order: { xs: 0, md: 1 },
+            flexGrow: 1,
             display: "flex",
+            alignSelf: "stretch",
+            alignItems: "center",
+            height: { xs: "auto", md: "20vh" },  // Adjust the height as needed
           }}
         >
           {renderImg}
@@ -108,6 +120,6 @@ export default function ShopProductCard({ product }) {
   );
 }
 
-ShopProductCard.propTypes = {
+MyPostCard.propTypes = {
   product: PropTypes.object,
 };
