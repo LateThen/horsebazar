@@ -1,13 +1,17 @@
-export const createHorse = async (formData) => {
+export const createHorse = async (formData: Horse) => {
   const res = await fetch("http://localhost:3000/api/v1/horses", {
-    body: formData,
-    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+    method: "POST"
   });
   const data = await res.json();
   return {
     status: res.status,
-    msg: data.msg,
-  };
+    msg: data.msg
+  }
 };
 
 export const getHorses = async () => {

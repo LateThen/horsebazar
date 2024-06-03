@@ -67,8 +67,23 @@ export default function BlogView() {
       }
     }
   };
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const user = await createHorse({
+      name: data.get("name") as string,
+      phonenumber: data.get("phonenumber") as any,
+      location: data.get("location") as string,
+      price: data.get("price") as any,
+      description: data.get("description") as string,
+      postname: data.get("postname") as string,
+    });
+    if (user.status == 201) return navigate("/");
+    if (user.status == 400) return setInfo(user.msg);
+    if (user.status == 500) return navigate("/error");
+  };
 
-
+/*
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>,
     SelectChangeEvent
@@ -86,7 +101,7 @@ export default function BlogView() {
     if (post.status === 400) return setInfo(post.msg);
     if (post.status === 500) return navigate("/");
   };
-
+*/
   const handleChange = async (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -110,7 +125,9 @@ export default function BlogView() {
               <Box sx={{ p: 2, display: "flex", flexDirection: "column" }}>
                 <TextField
                   id="name"
-                  label="Jméno"
+                  label="jméno"
+                  name="name"
+                  autoComplete="name"
                   sx={{ marginBottom: 2 }}
                   required
                   fullWidth
@@ -120,6 +137,8 @@ export default function BlogView() {
                   id="phonenumber"
                   label="Telefon"
                   type="text"
+                  name="phonenumber"
+                  autoComplete="phonenumber"
                   value={phone}
                   onChange={handlePhoneChange}
                   inputProps={{ maxLength: 9 }}
@@ -143,12 +162,17 @@ export default function BlogView() {
                     Cena
                   </InputLabel>
                   <OutlinedInput
-                    id="pricet"
+                    id="price"
                     startAdornment={
                       <InputAdornment position="start">Kč</InputAdornment>
                     }
                     label="Cena"
                     value={amount}
+                    
+                  
+           
+                  name="price"
+                  autoComplete="price"
                     onChange={handleAmountChange}
                     inputProps={{
                       inputMode: "numeric",
@@ -201,6 +225,7 @@ export default function BlogView() {
                 <TextField
                 id="postname"
                   label="Název"
+                  name="postname"
                   sx={{ marginTop: 2 }}
                   inputProps={{ maxLength: 64 }}
                   fullWidth
