@@ -1,19 +1,19 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import Stack from '@mui/material/Stack';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Unstable_Grid2';
-import Typography from '@mui/material/Typography';
+import Stack from "@mui/material/Stack";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Unstable_Grid2";
+import Typography from "@mui/material/Typography";
 
-import { products } from '../../../_mock/products';
+import { products } from "../../../_mock/products";
 
-import ProductCard from '../product-card';
-import ProductSort from '../product-sort';
-import ProductFilters from '../product-filters';
+import ProductCard from "../product-card";
+import ProductFilters from "../product-filters";
+import ProductSort from "../product-sort";
 
 // ----------------------------------------------------------------------
 
-export default function ProductsView() {
+export default function MyPostView() {
   const [openFilter, setOpenFilter] = useState(false);
 
   const handleOpenFilter = () => {
@@ -46,6 +46,21 @@ export default function ProductsView() {
 
           <ProductSort />
         </Stack>
+      </Stack>
+
+      <Stack
+        direction="row"
+        alignItems="center"
+        flexWrap="wrap-reverse"
+        justifyContent="flex-end"
+        sx={{ mb: 5 }}
+      >
+        <Stack
+          direction="row"
+          spacing={1}
+          flexShrink={0}
+          sx={{ my: 1 }}
+        ></Stack>
       </Stack>
 
       <Grid container spacing={3}>
