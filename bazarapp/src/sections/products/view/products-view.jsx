@@ -1,20 +1,91 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
+import { getUploads } from "../../../models/Horse"
+import ShopProductCard from "../product-card";
 
-import { products } from '../../../_mock/products';
-
-import ProductCard from '../product-card';
+/*import ProductCard from '../product-card';
 import ProductSort from '../product-sort';
-import ProductFilters from '../product-filters';
+import ProductFilters from '../product-filters';*/
 
 // ----------------------------------------------------------------------
 
 export default function ProductsView() {
-  const [openFilter, setOpenFilter] = useState(false);
+  const [uploads, setUploads] = useState();
+  const [isLoaded, setLoaded] = useState(false);
+
+  const load = async () => {
+    const data = await getUploads();
+    console.log(data);
+    if (data.status === 200) {
+      setUploads(data.payload);
+      setLoaded(true);
+    } else {
+      setLoaded(null);
+    }
+  };
+  useEffect(() => {
+    load();
+  }, []);
+  if (isLoaded === null) {
+    return (
+      <>
+        <h1>No posts made</h1>
+      </>
+    );
+  }
+  return (
+    <>
+      
+      <h1>Home page</h1>
+      {isLoaded ? (
+        uploads.map((upload, index) => <ShopProductCard key={index} {...upload} />)
+      ) : (
+        <p>Loading</p>
+      )}
+        <p style={{ marginLeft: "300px", paddingLeft: "16px" }}>
+          Upload new image
+        </p>
+     
+    </>
+  );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  const [openFilter, setOpenFilter] = useState(false);
 
   const handleOpenFilter = () => {
     setOpenFilter(true);
@@ -56,5 +127,5 @@ export default function ProductsView() {
         ))}
       </Grid>
     </Container>
-  );
+  );*/
 }
