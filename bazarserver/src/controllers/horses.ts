@@ -1,77 +1,108 @@
-import { Request, Response } from "express";
-import db from "../models/index";
+import { NextFunction, Request, Response } from "express";
 import { genSalt, hash } from "bcrypt";
-
-const Horse = db.horsetable;
+import db from "../models/index";
+const Horses = db.horsetable;
+const Horse = require("../models/horses");
+const imageController = require("../controllers/image");
 
 export const getAllHorses = async (req: Request, res: Response) => {
   try {
-    const Horses = await Horse.findAll();
-    if (!Horses || Horses.length == 0)
-      return res.status(500).send({ msg: "Horses not found" });
-    return res.status(200).send({
-      msg: "Horses found",
-      payload: Horses,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
+    const posts: any = await Horses.findAll();
+    if (!posts || posts.length === 0)
+      return res.status(500).send({ message: "Posts not found" });
+    return res.status(200).send({ message: "Posts found", payload: posts });
+  } catch (err) {
+    console.log(err);
+    res.status(500).end();
   }
 };
-
 export const getHorseById = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params; // const id = req.params.id
-    if (!id) return res.status(400).send({ msg: "Missing details!" });
-    const Horses = await Horse.findOne({ where: { id: id } });
-    if (!Horses) return res.status(404).send({ msg: "Horses not found!" });
-    return res.status(200).send({ msg: "Horse found!", payload: Horses });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
+    const { id } = req.params;
+    if (!id) return res.status(400).send({ message: "Missing details!" });
+    const post: any = await Horses.findOne({ where: { id: id } });
+    if (!post) return res.status(500).send({ message: "Post not found" });
+    return res.status(200).send({ message: "Post found", payload: { post } });
+  } catch (err) {
+    console.log(err);
+    res.status(500).end();
   }
 };
-
 export const createHorse = async (req: Request, res: Response) => {
   try {
-    const createdUser = await Horse.create({
+    const { name, phonenumber, location, price, description, postname, photo} = req.body;
+    const post: any = await Horses.findOne({ where: { description: description } });
+    if (post) return res.status(400).send({ message: "Post already exists" });
+    const salt = await genSalt(10);
+    const createdHorse = await Horses.create({
+      name: name,
+      phonenumber: phonenumber,
+      location: location,
+      price: price,
+      description: description,
+      postname: postname,
+      photo: "http://localhost:3000/img/" + req.body.filename,
+ 
     });
-    if (!createdUser)
-    return res.status(201).send({ msg: "Horse created", payload: createdUser });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
+    return res.status(201).send({ message: "Post created" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).end();
   }
 };
-
 export const updateHorse = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const data = req.body;
-    if (!id || !data) return res.status(400).send({ msg: "Missing details!" });
-    const Horses = await Horse.findOne({ where: { id: id } });
-    if (!Horses) return res.status(500).send({ msg: "Horse not found" });
+    if (!id || !data)
+      return res.status(400).send({ message: "Missing details!" });
+    const post: any = await Horses.findOne({ where: { id: id } });
+    if (!post) return res.status(500).send({ message: "Post not found" });
     for (const ops of data) {
-        Horses[ops.propName] = ops.value;
+      post[ops.propName] = ops.value;
     }
-    const action = await Horses.save();
-    if (!action) return res.status(500).send({ msg: "Something went wrong" });
-    return res.status(200).send({ msg: "Horse updated!", payload: Horses });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
+    const action = await post.save();
+    if (!action)
+      return res.status(500).send({ message: "Something went wrong!" });
+    return res.status(200).send({ message: "Post updated", payload: post });
+  } catch (err) {
+    console.log(err);
+    res.status(500).end();
   }
 };
-
 export const deleteHorse = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    if (!id) return res.status(400).send({ msg: "Missing details!" });
-    const Horses = await Horse.destroy({ where: { id: id } });
-    if (!Horses) return res.status(400).send({ msg: "Horse not found!" });
-    return res.status(200).send({ msg: "Horse deleted!" });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
+    if (!id) return res.status(400).send({ message: "Missing details!" });
+    const post: any = await Horses.destroy({ where: { id: id } });
+    if (!post) return res.status(500).send({ message: "Post not found" });
+    return res.status(200).send({ message: "Post deleted" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).end();
   }
 };
+
+const uploadFile = imageController.upload.single("photo");
+
+const saveFileIntoFolder = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  uploadFile(req, res, (err: Error) => {
+    if (err) {
+      console.log(err);
+      /*switch(err.message) {
+        case "Missing details":
+          return res.status(400).send({msg: "Nejsou detaily :("})
+      }*/
+      console.log("error while uploading file");
+      return res.status(500).send(err);
+    }
+    console.log("File uploaded");
+    next();
+  });
+};
+
+export const postUpload = [saveFileIntoFolder, createHorse];
