@@ -1,20 +1,28 @@
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Unstable_Grid2';
-import Typography from '@mui/material/Typography';
-
-import Iconify from '../../../components/iconify';
-import Box  from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-
+import Box from '@mui/material/Box';
 
 // ----------------------------------------------------------------------
 
 export default function AppView() {
   return (
-    <Box sx={{ backgroundImage: 'url(../../src/img/blackMarketer.png)', backgroundSize: "cover", backgroundRepeat: "no-repeat"}} width="1" height="1">
-      <Typography variant="h4" textAlign="center" color="white">
-        I trade in any kind of horse... Whether it’s stolen horses, or even prohibited types... Take a look...
-      </Typography>
+    <Box
+    overflow="hidden"
+      sx={{
+        position: {lg: "absolute", sm: "none"},
+        top: { lg: 80, sm: 0 }, // Výška horního navbaru
+        left: { lg: 277, sm: 0 }, // Šířka levého navbaru
+        width: {lg: "calc(100vw - 277px)", sm: "100vw"}, // Šířka viewportu mínus šířka levého navbaru
+        height: {lg: 'calc(100vh - 80px)', sm: 'calc(100vh - 144px)', xs: "calc(100vh - 144px)"}, // Výška viewportu mínus výška horního navbaru
+      }}
+    >
+      <img
+        src="../../src/img/blackMarketer.png"
+        alt=""
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover'
+        }}
+      />
     </Box>
   );
 }
