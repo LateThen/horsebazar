@@ -11,9 +11,14 @@ const storage = multer.diskStorage({
     },
 });
 const filter = (req, file, cb) => {
+    const columns = req.body;
+    const { name, phonenumber, location, price, description, postname } = columns;
+    if (!name || !phonenumber || !location || !price || !description || !postname)
+        return cb(new Error("Missing details"));
     file.mimetype === "image/jpeg" ||
         file.mimetype === "image/png" ||
-        file.mimetype === "image/gif"
+        file.mimetype === "image/gif" ||
+        file.mimetype === "image/webp"
         ? cb(null, true)
         : cb(null, false);
 };

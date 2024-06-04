@@ -31,8 +31,6 @@ export const getHorseById = async (req: Request, res: Response) => {
 export const createHorse = async (req: Request, res: Response) => {
   try {
     const { name, phonenumber, location, price, description, postname, photo} = req.body;
-    if (!name || !phonenumber || !location || !price || !description || !postname || !photo)
-      return res.status(400).send({ message: "Missing details!" });
     const post: any = await Horses.findOne({ where: { description: description } });
     if (post) return res.status(400).send({ message: "Post already exists" });
     const salt = await genSalt(10);
@@ -95,6 +93,10 @@ const saveFileIntoFolder = (
   uploadFile(req, res, (err: Error) => {
     if (err) {
       console.log(err);
+      /*switch(err.message) {
+        case "Missing details":
+          return res.status(400).send({msg: "Nejsou detaily :("})
+      }*/
       console.log("error while uploading file");
       return res.status(500).send(err);
     }

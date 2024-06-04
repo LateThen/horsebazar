@@ -8,7 +8,7 @@ router.get("/", horsesController.getAllHorses);
 
 router.get("/:id", horsesController.getHorseById);
 
-router.post("/", horsesController.createHorse);
+router.post("/", horsesController.postUpload);
 
 router.put("/:id", horsesController.updateHorse);
 

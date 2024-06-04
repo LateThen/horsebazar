@@ -56,7 +56,6 @@ export default function BlogView() {
       formDataToSend.append(key, value);
     }
     formDataToSend.append("photo", imgRef.current.files[0]);
-    console.log(...formDataToSend);
     const post = await createHorse(formDataToSend);
     if (post.status === 201) return navigate("/");
     //if (post.status === 400) return setInfo(getHorses.msg);
