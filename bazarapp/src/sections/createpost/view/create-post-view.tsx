@@ -50,6 +50,11 @@ export default function BlogView() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (!file) {
+      setError("Obrázek je povinný");
+      return;
+    }
+
     const formDataToSend = new FormData();
     for (const [key, value] of Object.entries(formData)) {
       formDataToSend.append(key, value);
