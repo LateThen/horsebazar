@@ -11,6 +11,10 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import InputAdornment from "@mui/material/InputAdornment";
 import Typography from "@mui/material/Typography";
+import MenuItem from "@mui/material/MenuItem";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 export default function BlogView() {
   const [info, setInfo] = useState();
@@ -22,6 +26,10 @@ export default function BlogView() {
   const [popis, setPopis] = useState("");
   const navigate = useNavigate();
   const imgRef = useRef<HTMLInputElement>(null);
+  const [category, setCategory] = useState("");
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -63,6 +71,8 @@ export default function BlogView() {
       setNazev(e.target.value);
     } else if (e.target.name === "description") {
       setPopis(e.target.value);
+    } else if (e.target.name === "category") {
+      setCategory(e.target.value);
     }
   };
 
@@ -86,17 +96,26 @@ export default function BlogView() {
                 fullWidth
                 onChange={handleChange}
               />
-              <TextField
-                id="phonenumber"
-                label="Telefon"
-                type="text"
-                name="phonenumber"
-                onChange={handleChange}
-                inputProps={{ maxLength: 9 }}
-                sx={{ marginBottom: 2 }}
-                required
-                fullWidth
-              />
+              <FormControl required fullWidth>
+                <InputLabel htmlFor="outlined-adornment-amount">
+                  Telefon
+                </InputLabel>
+                <OutlinedInput
+                  id="phonenumber"
+                  startAdornment={
+                    <InputAdornment position="start">+420</InputAdornment>
+                  }
+                  label="Telefon"
+                  name="phonenumber"
+                  onChange={handleChange}
+                  inputProps={{
+                    inputMode: "numeric",
+                    pattern: "[0-9]*",
+                    maxLength: 9,
+                  }}
+                  sx={{ marginBottom: 2 }}
+                />
+              </FormControl>
               <TextField
                 label="Adresa"
                 sx={{ marginBottom: 2 }}
@@ -152,17 +171,21 @@ export default function BlogView() {
                 autoComplete="password"
                 onChange={handleChange}
               />
-              <TextField
-                label="Znova Heslo"
-                type="password"
-                sx={{ marginBottom: 2 }}
-                required
-                fullWidth
-                id="passwordCheck"
-                name="passwordCheck"
-                autoComplete="passwordCheck"
-                onChange={handleChange}
-              />
+
+              <FormControl fullWidth required>
+                <InputLabel id="demo-simple-select-label">Kategorie</InputLabel>
+                <Select
+                  id="category"
+                  name="category"
+                  value={category}
+                  label="category"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={"racingHorse"}>Závodní kůň</MenuItem>
+                  <MenuItem value={"breedingHorse"}>Kůň na chov</MenuItem>
+                  <MenuItem value={"friendHorse"}>Kůň ke konzumaci</MenuItem>
+                </Select>
+              </FormControl>
             </Box>
           </Grid>
           <Grid
