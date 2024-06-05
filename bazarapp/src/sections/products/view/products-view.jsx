@@ -40,15 +40,23 @@ export default function ProductsView() {
   return (
     <>
       
-      <h1>Home page</h1>
+      <h1>Horses</h1>
       {isLoaded ? (
         uploads.map((upload, index) => <ShopProductCard key={index} {...upload} />)
       ) : (
         <p>Loading</p>
       )}
         <p style={{ marginLeft: "300px", paddingLeft: "16px" }}>
-          Upload new image
         </p>
+        <Stack
+        direction="row"
+        alignItems="center"
+        flexWrap="wrap-reverse"
+        justifyContent="flex-end"
+        sx={{ mb: 5 }}>
+    </Stack>
+    
+        
      
     </>
   );
