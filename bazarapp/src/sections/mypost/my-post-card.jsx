@@ -87,7 +87,7 @@ export default function MyPostCard({ product }) {
               justifyContent: "center",
             }}
           >
-            <Typography sx={{ textOverflow: "ellipsis", overflow: "hidden", textWrap: "nowrap", maxWidth: {xs: "350px", sm: "200px"}, maxHeight: "100px" }}>
+            <Typography sx={{ textOverflow: "ellipsis", overflow: "hidden", textWrap: "nowrap", maxWidth: {xs: "350px", sm: "250px", md: "250px", lg: "350px"}, maxHeight: "100px" }}>
               Description here. Lorem, ipsum dolor sit amet consectetur
               adipisicing elit. Incidunt eaque aspernatur voluptatum recusandae
               quisquam, quia harum molestiae optio pariatur fugit nihil tempore
@@ -104,17 +104,9 @@ export default function MyPostCard({ product }) {
         <Stack
           direction={{ xs: "column", md: "row" }}
           spacing={1}
-          sx={{ p: 2, alignItems: "center", width: { xs: "100%", md: "60vh" }}}
+          sx={{ p: 2, alignItems: "center", width: { xs: "100%", md: "30vh" }}}
           justifyContent="center"
         >
-          <Button
-            variant="contained"
-            color="secondary"
-            startIcon={<SettingsIcon sx={{ fontSize: 16 }} />}
-            sx={{ width: { xs: "100%", md: "auto" } }}
-          >
-            Upravit inzerát
-          </Button>
           <Button
             variant="contained"
             sx={{
