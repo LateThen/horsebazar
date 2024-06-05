@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { fCurrency } from '../../utils/format-number';
 import { ColorPreview } from '../../components/color-utils';
 import { useState, useEffect } from 'react';
+import { products } from '../../_mock/products';
 
 // ----------------------------------------------------------------------
 
@@ -33,7 +34,7 @@ export default function ShopProductCard( props ) {
     />
   )
   useEffect(() => {
-    seturl(`http://localhost:3000/horse/${props.id}`);
+    seturl(`http://localhost:5173/horses/${props.id}`);
   }, []);
   return(
    <>

@@ -26,7 +26,7 @@ export const getUploads = async () => {
   };
 };
 export const getUpload = async (id) => {
-  const req = await fetch(`http://localhost:3000/api/v1/horse/${id}`, {
+  const req = await fetch(`http://localhost:3000/api/v1/horses/${id}`, {
     method: "GET",
     headers: {
       Accept: "application/json",

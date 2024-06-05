@@ -19,7 +19,6 @@ export default function ProductsView() {
 
   const load = async () => {
     const data = await getUploads();
-    console.log(data);
     if (data.status === 200) {
       setUploads(data.payload);
       setLoaded(true);
