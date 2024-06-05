@@ -55,7 +55,7 @@ if (productData){
       <h1>Název inzerátu: {productData.postname}</h1>
       <h1>Popisek: {productData.description}</h1>
       <h1>Jméno přidavatele inzerátu: {productData.name}</h1>
-      <h1>Telefon: {productData.phone}</h1>
+      <h1>Telefon: {productData.phonenumber}</h1>
       <h1>Lokace: {productData.location}</h1>
       <h1>Cena: {productData.price}</h1>
       //tlacitko na smazani postu zde fr
