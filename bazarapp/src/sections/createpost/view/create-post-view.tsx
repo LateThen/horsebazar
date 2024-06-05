@@ -12,8 +12,6 @@ import FormControl from "@mui/material/FormControl";
 import InputAdornment from "@mui/material/InputAdornment";
 import Typography from "@mui/material/Typography";
 import MenuItem from "@mui/material/MenuItem";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 export default function BlogView() {
@@ -27,9 +25,6 @@ export default function BlogView() {
   const navigate = useNavigate();
   const imgRef = useRef<HTMLInputElement>(null);
   const [category, setCategory] = useState("");
-  const [showPassword, setShowPassword] = React.useState(false);
-
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
