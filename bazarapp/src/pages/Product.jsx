@@ -70,6 +70,15 @@ function Product() {
       setInfo("Error deleting post");
     }
   };
+  const editPost = async () => {
+      if (formData.password == productData.password) {
+        setInfo("Incorrect password or product data not loaded");
+        navigate('updateproduct');
+        return;
+      
+    } 
+
+  }
   
 
   useEffect(() => {
@@ -106,16 +115,9 @@ if (productData){
           alt={productData.postname}
           title={productData.postname}
         />
-      <Button
-            variant="contained"
-            color="secondary"
-            startIcon={<SettingsIcon sx={{ fontSize: 16 }} />}
-            sx={{ width: { xs: "100%", md: "auto" }, marginRight: "20px" }}
-          >
-            Upravit inzerát
-          </Button>
+    
           <p className="control has-icons-left formInput">
-                <input placeholder="Enter password for deleting this post" name="password" type="password" className="input" onChange={(e) => handleChange(e)}/>
+                <input placeholder="Zadejte heslo pro úpravu/odstranění" name="password" type="password" className="input" onChange={(e) => handleChange(e)}/>
             </p>
             <button
           style={{ color: "#a31bf1", marginTop: "3rem", marginBottom: '3rem' }}
@@ -123,7 +125,15 @@ if (productData){
           onClick={deletePost}
           
         >
-          Submit
+          Odstranit
+        </button>
+        <button
+          style={{ color: "#a31bf1", marginTop: "3rem", marginBottom: '3rem' }}
+          className="button"
+          onClick={editPost}
+          
+        >
+          Upravit
         </button>
     </div>
   );

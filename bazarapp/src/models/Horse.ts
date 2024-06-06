@@ -52,6 +52,18 @@ export const deleteUpload = async (id, formData) => {
     }),
   });
 }
+export const updateUpload = async (id, formData) => {
+  const req = await fetch(`http://localhost:3000/api/v1/horses/${id}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+  const data = await req.json();
+  return createUploadPayload(req, data);
+};
   export type Horse = {
     id?: string;
     name?: string;
@@ -64,5 +76,13 @@ export const deleteUpload = async (id, formData) => {
     password? : string;
     category? : string;
     //pridani obrazku
+  };
+  
+  const createUploadPayload = (req, data) => {
+    return {
+      msg: data.msg,
+      data: data.payload,
+      status: req.status,
+    };
   };
   
