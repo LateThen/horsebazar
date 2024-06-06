@@ -31,7 +31,7 @@ const router = express_1.default.Router();
 const horsesController = __importStar(require("../controllers/horses"));
 router.get("/", horsesController.getAllHorses);
 router.get("/:id", horsesController.getHorseById);
-router.post("/", horsesController.createHorse);
+router.post("/", horsesController.postUpload);
 router.put("/:id", horsesController.updateHorse);
 router.delete("/:id", horsesController.deleteHorse);
 module.exports = router;
