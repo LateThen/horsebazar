@@ -25,6 +25,21 @@ export const getUploads = async () => {
     msg: data.msg,
   };
 };
+export const getUpload = async (id) => {
+  const req = await fetch(`http://localhost:3000/api/v1/horses/${id}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await req.json();
+  return {
+    status: req.status,
+    payload: data.payload,
+    msg: data.msg,
+  };
+};
   
   export type Horse = {
     id?: string;

@@ -1,125 +1,111 @@
 import PropTypes from "prop-types";
 
-import Box from "@mui/material/Box";
-import Link from "@mui/material/Link";
-import Card from "@mui/material/Card";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import { Link as ReactLink } from "react-router-dom";
-import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
-import SettingsIcon from '@mui/icons-material/Settings';
 
-import { fCurrency } from "../../utils/format-number";
-import { ColorPreview } from "../../components/color-utils"
+import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
+import Card from '@mui/material/Card';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import { Link as ReactLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { fCurrency } from '../../utils/format-number';
+import { ColorPreview } from '../../components/color-utils';
+import { useState, useEffect } from 'react';
+import { products } from '../../_mock/products';
 
 // ----------------------------------------------------------------------
 
-export default function MyPostCard({ product }) {
+
+
+export default function ShopProductCard( props ) {
+  const [url, seturl] = useState();
+
   const renderImg = (
     <Box
       component="img"
-      alt={product.name}
-      src={product.cover}
+      alt={props.postname}
+      src={props.photo}
       sx={{
         height: "100%",
         objectFit: "cover",
         width: "100%",
       }}
     />
-  );
-
-  const renderPrice = (
-    <Typography variant="subtitle1">
-      <Typography
-        component="span"
-        variant="body1"
-        sx={{
-          color: "text.disabled",
-          textDecoration: "line-through",
-        }}
-      >
-        {product.priceSale && fCurrency(product.priceSale)}
-      </Typography>
-      &nbsp;
-      {fCurrency(product.price)}
-    </Typography>
-  );
-
-  return (
+  )
+  useEffect(() => {
+    seturl(`http://localhost:5173/horses/${props.id}`);
+  }, []);
+  return(
+   <>
+   <br />
     <Card>
-      <Stack
-        direction={{ xs: "column", md: "row" }}
-        spacing={2}
+    <Stack
+      direction={{ xs: "column", md: "row" }}
+      spacing={2}
+      sx={{
+        justifyContent: "space-between",
+        alignItems: "center",
+        
+      }}
+    >
+      <Box
         sx={{
-          justifyContent: "space-between",
-          alignItems: "center",
+          pl: 1,
+          pt: 1,
+          flexGrow: 1,
         }}
       >
-        <Box
+        <Stack
+          spacing={2}
+          sx={{ pl: 2, textAlign: { xs: "center", md: "left" } }}
+        >
+          <Link color="inherit" variant="subtitle2" noWrap underline="hover">
+            {props.name}
+           
+          </Link>
+
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent={{ xs: "center", md: "flex-start" }}
+          >
+ 
+            {props.price} Kč
+       
+          </Stack>
+        </Stack>
+        <Stack
           sx={{
-            pl: 1,
-            pt: 1,
-            flexGrow: 1,
+            p: 2,
+            textAlign: { xs: "center", md: "left" },
+            justifyContent: "center",
           }}
         >
-          <Stack
-            spacing={2}
-            sx={{ pl: 2, textAlign: { xs: "center", md: "left" } }}
-          >
-            <Link color="inherit" variant="subtitle2" noWrap underline="hover">
-              {product.name}
-            </Link>
+          <Typography sx={{ textOverflow: "ellipsis", overflow: "hidden", textWrap: {md: "nowrap", sm: "wrap"}, maxWidth: {xs: "350px", sm: "600px"}, maxHeight: "100px" }}>
+            {props.description}
+          </Typography>
+        </Stack>
+      </Box>
 
-            <Stack
-              direction="row"
-              alignItems="center"
-              justifyContent={{ xs: "center", md: "flex-start" }}
-            >
-              <ColorPreview colors={product.colors} />
-              {renderPrice}
-            </Stack>
-          </Stack>
-          <Stack
-            sx={{
-              p: 2,
-              textAlign: { xs: "center", md: "left" },
-              justifyContent: "center",
-            }}
-          >
-            <Typography sx={{ textOverflow: "ellipsis", overflow: "hidden", textWrap: {md: "nowrap", sm: "wrap"}, maxWidth: {xs: "350px", sm: "600px"}, maxHeight: "100px" }}>
-              Description here. Lorem, ipsum dolor sit amet consectetur
-              adipisicing elit. Incidunt eaque aspernatur voluptatum recusandae
-              quisquam, quia harum molestiae optio pariatur fugit nihil tempore
-              illo delectus quo perferendis, veniam, voluptatibus molestias
-              architecto.Description here. Lorem, ipsum dolor sit amet consectetur
-              adipisicing elit. Incidunt eaque aspernatur voluptatum recusandae
-              quisquam, quia harum molestiae optio pariatur fugit nihil tempore
-              illo delectus quo perferendis, veniam, voluptatibus molestias
-              architecto.
-            </Typography>
-          </Stack>
-        </Box>
-
-        <Box
-          component={ReactLink}
-          to="/"
-          sx={{
-            order: { xs: 0, md: 1 },
-            flexGrow: 1,
-            display: "flex",
-            alignSelf: "stretch",
-            alignItems: "center",
-            height: { xs: "auto", md: "20vh" },  // Adjust the height as needed
-          }}
-        >
-          {renderImg}
-        </Box>
-      </Stack>
-    </Card>
-  );
+      <Box
+        component={ReactLink}
+        to={url}
+        sx={{
+          order: { xs: 0, md: 1 },
+          flexGrow: 1,
+          display: "flex",
+          alignSelf: "stretch",
+          alignItems: "center",
+          height: { xs: "auto", md: "20vh" },  
+        }}
+      >
+        {renderImg}
+      </Box>
+    </Stack>
+  </Card>
+  </>
+  )
+ 
 }
 
-MyPostCard.propTypes = {
-  product: PropTypes.object,
-};
+

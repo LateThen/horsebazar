@@ -41,7 +41,7 @@ export const createHorse = async (req: Request, res: Response) => {
       price: price,
       description: description,
       postname: postname,
-      photo: "http://localhost:3000/img/" + req.body.filename,
+      photo: "http://localhost:3000/img/" + req.file?.filename,
  
     });
     return res.status(201).send({ message: "Post created" });
