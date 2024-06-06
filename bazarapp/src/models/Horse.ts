@@ -40,7 +40,18 @@ export const getUpload = async (id) => {
     msg: data.msg,
   };
 };
-  
+export const deleteUpload = async (id, formData) => {
+  console.log(formData);
+  const res = await fetch(`http://localhost:3000/api/v1/horses/${id}`, {
+    method: "DELETE",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      password: formData.password,
+    }),
+  });
+}
   export type Horse = {
     id?: string;
     name?: string;

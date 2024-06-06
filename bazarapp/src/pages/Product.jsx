@@ -1,8 +1,13 @@
 // Product.jsx
 import React from 'react';
-import { getUpload } from "../models/Horse"
+import { getUpload, deleteUpload } from "../models/Horse"
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import Button from '@mui/material/Button';
+import SettingsIcon from "@mui/icons-material/Settings"
+
+
+
 function Product() {
     const {id} = useParams();
     const [productData, setProductData] = useState();
@@ -23,6 +28,11 @@ function Product() {
       setLoaded(null);
     }
   };
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    console.log(formData, id)
+  };
+ 
   /*const deletePost = async () => {
     try {
         const deleted = await deleteUpload(id, formData)
@@ -38,6 +48,29 @@ function Product() {
     load();
     console.log(productData)
   }, [])
+  const deletePost = async () => {
+    try {
+      if (!productData || formData.password !== productData.password) {
+        setInfo("Incorrect password or product data not loaded");
+        return;
+      }
+  
+      const deleted = await deleteUpload(id, formData);
+      if (!deleted || deleted.status !== 200) {
+        setInfo("Error deleting post");
+        navigate('/products');
+        return;
+      
+      }
+
+  
+      
+    } catch (error) {
+      console.error('Error deleting post:', error);
+      setInfo("Error deleting post");
+    }
+  };
+  
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -73,7 +106,25 @@ if (productData){
           alt={productData.postname}
           title={productData.postname}
         />
-
+      <Button
+            variant="contained"
+            color="secondary"
+            startIcon={<SettingsIcon sx={{ fontSize: 16 }} />}
+            sx={{ width: { xs: "100%", md: "auto" }, marginRight: "20px" }}
+          >
+            Upravit inzerát
+          </Button>
+          <p className="control has-icons-left formInput">
+                <input placeholder="Enter password for deleting this post" name="password" type="password" className="input" onChange={(e) => handleChange(e)}/>
+            </p>
+            <button
+          style={{ color: "#a31bf1", marginTop: "3rem", marginBottom: '3rem' }}
+          className="button"
+          onClick={deletePost}
+          
+        >
+          Submit
+        </button>
     </div>
   );
 }
