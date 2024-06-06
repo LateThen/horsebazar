@@ -58,6 +58,7 @@ if (productData){
       <h1>Telefon: {productData.phonenumber}</h1>
       <h1>Lokace: {productData.location}</h1>
       <h1>Cena: {productData.price}</h1>
+      <h1>Kategorie : {productData.category}</h1>
       //tlacitko na smazani postu zde fr
       <img
           style={{

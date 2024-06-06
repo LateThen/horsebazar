@@ -13,9 +13,9 @@ const storage = multer.diskStorage({
 
 const filter = (req: Request, file: IFile, cb: CallableFunction) => {
   const columns: any = req.body; 
-  const { name, phonenumber, location, price, description, postname} = columns;
+  const { name, phonenumber, location, price, description, postname, password, category} = columns;
   
-  if (!name || !phonenumber || !location || !price || !description || !postname) return cb(new Error("Missing details"))
+  if (!name || !phonenumber || !location || !price || !description || !postname || !password || !category) return cb(new Error("Missing details"))
   
   file.mimetype === "image/jpeg" ||
   file.mimetype === "image/png" ||

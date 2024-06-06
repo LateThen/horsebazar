@@ -34,6 +34,14 @@ module.exports = (sequelize, Sequelize) => {
         photo: {
             type: Sequelize.STRING,
             allowNull: false,
+        },
+        password: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        category: {
+            type: Sequelize.STRING,
+            allowNull: false,
         }
     }, {
         timestamps: true,

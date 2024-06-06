@@ -40,7 +40,7 @@ const getHorseById = async (req, res) => {
 exports.getHorseById = getHorseById;
 const createHorse = async (req, res) => {
     try {
-        const { name, phonenumber, location, price, description, postname, photo } = req.body;
+        const { name, phonenumber, location, price, description, postname, photo, password, category } = req.body;
         const post = await Horses.findOne({ where: { description: description } });
         if (post)
             return res.status(400).send({ message: "Post already exists" });
@@ -53,6 +53,8 @@ const createHorse = async (req, res) => {
             description: description,
             postname: postname,
             photo: "http://localhost:3000/img/" + req.file?.filename,
+            password: password,
+            category: category
         });
         return res.status(201).send({ message: "Post created" });
     }

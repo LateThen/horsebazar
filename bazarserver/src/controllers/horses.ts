@@ -30,7 +30,7 @@ export const getHorseById = async (req: Request, res: Response) => {
 };
 export const createHorse = async (req: Request, res: Response) => {
   try {
-    const { name, phonenumber, location, price, description, postname, photo} = req.body;
+    const { name, phonenumber, location, price, description, postname, photo, password, category} = req.body;
     const post: any = await Horses.findOne({ where: { description: description } });
     if (post) return res.status(400).send({ message: "Post already exists" });
     const salt = await genSalt(10);
@@ -42,6 +42,8 @@ export const createHorse = async (req: Request, res: Response) => {
       description: description,
       postname: postname,
       photo: "http://localhost:3000/img/" + req.file?.filename,
+      password: password,
+      category: category
  
     });
     return res.status(201).send({ message: "Post created" });

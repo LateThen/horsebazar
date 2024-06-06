@@ -12,7 +12,7 @@ import FormControl from "@mui/material/FormControl";
 import InputAdornment from "@mui/material/InputAdornment";
 import Typography from "@mui/material/Typography";
 import MenuItem from "@mui/material/MenuItem";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 
 export default function BlogView() {
   const [info, setInfo] = useState();
@@ -181,9 +181,9 @@ export default function BlogView() {
                   label="category"
                   onChange={handleChange}
                 >
-                  <MenuItem value={"racingHorse"}>Závodní kůň</MenuItem>
-                  <MenuItem value={"breedingHorse"}>Kůň na chov</MenuItem>
-                  <MenuItem value={"friendHorse"}>Kůň ke konzumaci</MenuItem>
+                  <MenuItem value={"Závodní kůň"}>Závodní kůň</MenuItem>
+                  <MenuItem value={"Kůň na chov"}>Kůň na chov</MenuItem>
+                  <MenuItem value={"Kůň ke konzumaci"}>Kůň ke konzumaci</MenuItem>
                 </Select>
               </FormControl>
             </Box>

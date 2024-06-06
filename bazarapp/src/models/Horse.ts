@@ -50,6 +50,8 @@ export const getUpload = async (id) => {
     description?: string;
     postname?: string;
     photo? : string;
+    password? : string;
+    category? : string;
     //pridani obrazku
   };
   
