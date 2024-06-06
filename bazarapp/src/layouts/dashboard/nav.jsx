@@ -83,7 +83,7 @@ export default function Nav({ openNav, onCloseNav }) {
         },
       }}
     >
-      <Logo sx={{ mt: 3, ml: 4 }} />
+      <Logo sx={{ mt: 3}} />
 
       {renderAccount}
 
@@ -187,11 +187,11 @@ function NavItem({ item }) {
         textTransform: "capitalize",
         fontWeight: "fontWeightMedium",
         ...(active && {
-          color: "primary.main",
+          color: "secondary.light",
           fontWeight: "fontWeightSemiBold",
-          bgcolor: (theme) => alpha(theme.palette.primary.main, 0.08),
+          bgcolor: (theme) => alpha(theme.palette.secondary.light, 0.08),
           "&:hover": {
-            bgcolor: (theme) => alpha(theme.palette.primary.main, 0.16),
+            bgcolor: (theme) => alpha(theme.palette.secondary.light, 0.16),
           },
         }),
       }}

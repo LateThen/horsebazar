@@ -25,20 +25,6 @@ const navConfig = [
     path: "/createpost",
     icon: icon("ic_cart"),
   },
-
-  {
-    title: "login",
-    path: "/login",
-    align: true,
-    icon: icon("ic_lock"),
-  },
-  {
-    title: "register",
-    align: true,
-    path: "/register",
-    icon: icon("ic_lock"),
-    className: "config-navigation-register-item",
-  },
 ];
 
 export default navConfig;
