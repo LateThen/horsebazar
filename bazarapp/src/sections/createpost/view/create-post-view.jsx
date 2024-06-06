@@ -90,6 +90,7 @@ export default function BlogView() {
                   sx={{ marginBottom: 2 }}
                   required
                   fullWidth
+                  color="secondary"
                 />
                 <TextField
                   label="Telefon"
@@ -100,15 +101,17 @@ export default function BlogView() {
                   sx={{ marginBottom: 2 }}
                   required
                   fullWidth
+                  color="secondary"
                 />
                 <TextField
                   label="Adresa"
                   sx={{ marginBottom: 2 }}
                   required
                   fullWidth
+                  color="secondary"
                 />
 
-                <FormControl required fullWidth>
+                <FormControl required fullWidth color="secondary">
                   <InputLabel htmlFor="outlined-adornment-amount">
                     Cena
                   </InputLabel>
@@ -135,6 +138,7 @@ export default function BlogView() {
                   onChange={handleFileChange}
                   InputLabelProps={{ shrink: true }}
                   fullWidth
+                  color="secondary"
                   sx={{ marginTop: 5 }}
                 />
                 {error && <Typography color="error">{error}</Typography>}
@@ -174,6 +178,7 @@ export default function BlogView() {
                   inputProps={{ maxLength: 64 }}
                   fullWidth
                   required
+                  color="secondary"
                   value={nazev}
                   multiline
                   minRows={1}
@@ -212,6 +217,7 @@ export default function BlogView() {
               maxRows={10}
               value={popis}
               onChange={handlePopisChange}
+              color="secondary"
             />
             <Typography
               variant="caption"
