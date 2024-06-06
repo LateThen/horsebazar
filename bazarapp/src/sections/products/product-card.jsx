@@ -1,4 +1,5 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -18,18 +19,16 @@ import { products } from '../../_mock/products';
 
 export default function ShopProductCard( props ) {
   const [url, seturl] = useState();
+
   const renderImg = (
     <Box
       component="img"
       alt={props.postname}
       src={props.photo}
       sx={{
-        top: 0,
-        width: 0.3,
-        height: 1,
-        right: 0,
-        objectFit: 'cover',
-        position: 'absolute',
+        height: "100%",
+        objectFit: "cover",
+        width: "100%",
       }}
     />
   )
