@@ -16,21 +16,22 @@ const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
   const PRIMARY_MAIN = theme.palette.primary.main;
   const PRIMARY_DARK = theme.palette.primary.dark;
 
-  const logoUrl = 'https://material-ui.com/static/logo_raw.svg';
+  const logoUrl = '../../src/img/logo.png';
 
   const logo = (
+    <Box width="1" justifyContent="center" display="flex">
     <Box
       ref={ref}
       component="div"
       sx={{
-        width: 40,
-        height: 40,
-        display: 'inline-flex',
+        width: 170,
+        height: 160,
         ...sx,
       }}
       {...other}
     >
       <img src={logoUrl} alt="logo.jsx" style={{ width: '100%', height: '100%' }} />
+    </Box>
     </Box>
   );
 
