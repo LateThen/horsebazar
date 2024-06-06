@@ -59,7 +59,7 @@ export default function AppView() {
             transition: "opacity 2s",
           }}
         >
-          <ReactLink to={"/products"}>
+          <ReactLink to={"/createpost"}>
             <img src="../../src/img/sellHorseButton.png" alt="Prodat Koně" />
           </ReactLink>
         </Button>

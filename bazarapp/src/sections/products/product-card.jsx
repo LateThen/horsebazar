@@ -27,8 +27,12 @@ export default function ShopProductCard( props ) {
       src={props.photo}
       sx={{
         height: "100%",
+        maxHeight: "300px",
+        minHeight: "200px",
         objectFit: "cover",
-        width: "100%",
+        width: {xs: "50%", md: "20%"},
+        position: {xs: "none" , md: "absolute"},
+        right: "0",
       }}
     />
   )
@@ -38,14 +42,13 @@ export default function ShopProductCard( props ) {
   return(
    <>
    <br />
-    <Card>
+    <Card sx={{ margin: "0 20px 0 20px", alignContent: "center"}}>
     <Stack
       direction={{ xs: "column", md: "row" }}
       spacing={2}
       sx={{
         justifyContent: "space-between",
         alignItems: "center",
-        
       }}
     >
       <Box
@@ -81,7 +84,7 @@ export default function ShopProductCard( props ) {
             justifyContent: "center",
           }}
         >
-          <Typography sx={{ textOverflow: "ellipsis", overflow: "hidden", textWrap: {md: "nowrap", sm: "wrap"}, maxWidth: {xs: "350px", sm: "600px"}, maxHeight: "100px" }}>
+          <Typography sx={{ textOverflow: "ellipsis", overflow: "hidden", textWrap: {md: "nowrap", xs: "wrap"}, maxWidth: {xs: "350px", sm: "500px", lg: "500px",xl: "900px"}, maxHeight: "600px" }}>
             {props.description}
           </Typography>
         </Stack>
@@ -92,11 +95,14 @@ export default function ShopProductCard( props ) {
         to={url}
         sx={{
           order: { xs: 0, md: 1 },
-          flexGrow: 1,
-          display: "flex",
-          alignSelf: "stretch",
-          alignItems: "center",
-          height: { xs: "auto", md: "20vh" },  
+              flexGrow: 1,
+              display: "flex",
+              alignSelf: "stretch",
+              alignItems: "center",
+              justifyContent: { xs: "center", md: "flex-end" },
+              height: { xs: "auto", md: "20vh" },
+              textAlign: "center", 
+              paddingBottom: {xs: "20px" ,md: "0px"}
         }}
       >
         {renderImg}
