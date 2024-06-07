@@ -23,6 +23,8 @@ import Scrollbar from "../../components/scrollbar";
 import { NAV } from "./config-layout";
 import navConfig from "./config-navigation";
 
+import Advertisement from "../../components/advertisement/advertisement";
+
 // ----------------------------------------------------------------------
 
 export default function Nav({ openNav, onCloseNav }) {
@@ -44,6 +46,7 @@ export default function Nav({ openNav, onCloseNav }) {
       {navConfig.map((item) => (
         <NavItem key={item.title} item={item} />
       ))}
+      <Advertisement/>
     </Stack>
   );
 

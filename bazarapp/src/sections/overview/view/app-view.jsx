@@ -34,6 +34,7 @@ export default function AppView() {
           width: "100%",
           height: "100%",
           objectFit: "cover",
+          marginLeft: {xs: "0px", md: "4px"}
         }}
       />
       <Box sx={{ position: "absolute", top: { lg: "98%", xs: "200px" } }} width="1">
