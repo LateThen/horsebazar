@@ -24,6 +24,7 @@ import { NAV } from "./config-layout";
 import navConfig from "./config-navigation";
 
 import Advertisement from "../../components/advertisement/advertisement";
+import { primary } from "../../theme/palette";
 
 // ----------------------------------------------------------------------
 
@@ -98,6 +99,8 @@ export default function Nav({ openNav, onCloseNav }) {
           PaperProps={{
             sx: {
               width: NAV.WIDTH,
+              backgroundColor: primary.dark,
+              backgroundImage: "none"
             },
           }}
         >
