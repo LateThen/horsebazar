@@ -30,7 +30,7 @@ export const getHorseById = async (req: Request, res: Response) => {
 };
 export const createHorse = async (req: Request, res: Response) => {
   try {
-    const { name, phonenumber, location, price, description, postname, photo, password, category} = req.body;
+    const { name, phonenumber, location, price, description, postname, password, category} = req.body;
     const post: any = await Horses.findOne({ where: { description: description } });
     if (post) return res.status(400).send({ message: "Post already exists" });
     const salt = await genSalt(10);
@@ -55,8 +55,45 @@ export const createHorse = async (req: Request, res: Response) => {
 export const updateHorse = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const data = req.body;
-    if (!id || !data)
+    const data = [
+      {
+        propName: "name",
+        value: req.body.name
+      },
+      {
+        propName: "phonenumber",
+        value: req.body.phonenumber
+      },
+      {
+        propName: "location",
+        value: req.body.location
+      },
+      {
+        propName: "price",
+        value: req.body.price
+      },
+      {
+        propName: "description",
+        value: req.body.description
+      },
+      {
+        propName: "postname",
+        value: req.body.postname
+      },
+      {
+        propName: "password",
+        value: req.body.password
+      },
+      {
+        propName: "category",
+        value: req.body.category
+      },
+      {
+        propName: "photo",
+        value: "http://localhost:3000/img/" + req.file?.filename
+      }
+    ];
+    if (!id)
       return res.status(400).send({ message: "Missing details!" });
     const post: any = await Horses.findOne({ where: { id: id } });
     if (!post) return res.status(500).send({ message: "Post not found" });
@@ -108,3 +145,4 @@ const saveFileIntoFolder = (
 };
 
 export const postUpload = [saveFileIntoFolder, createHorse];
+export const updateUpload = [saveFileIntoFolder, updateHorse];

@@ -53,13 +53,10 @@ export const deleteUpload = async (id, formData) => {
   });
 }
 export const updateUpload = async (id, formData) => {
+  console.log(...formData);
   const req = await fetch(`http://localhost:3000/api/v1/horses/${id}`, {
     method: "PUT",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
+    body: formData,
   });
   const data = await req.json();
   return createUploadPayload(req, data);

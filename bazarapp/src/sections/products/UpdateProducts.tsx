@@ -64,7 +64,7 @@ export default function UpdateProducts() {
     }
     formDataToSend.append("photo", imgRef.current.files[0]);
     const post = await updateUpload(id, formDataToSend);
-    if (post.status === 201) return navigate("/");
+    if (post.status === 200) return navigate("/");
     if (post.status === 500) return navigate("/");
   };
 
@@ -314,7 +314,7 @@ export default function UpdateProducts() {
           </Typography>
         </Box>
         <Button variant="contained" type="submit" size="large" fullWidth>
-          Vytvořit inzerát
+          Aktualizovat inzerát
         </Button>
       </form>
     </Container>
