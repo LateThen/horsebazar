@@ -10,6 +10,7 @@ const Page404 = lazy(() => import('../pages/page-not-found'));
 const CreatePost = lazy(() => import('../pages/createpost'));
 const RegisterPage = lazy(() => import('../pages/register'));
 const Product = lazy(() => import('../pages/Product'));
+const UpdateProduct = lazy(() => import('../pages/UpdateProduct.jsx'));
 
 
 export default function Router() {
@@ -27,7 +28,8 @@ export default function Router() {
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
         { path: 'createpost', element: <CreatePost /> },
-        { path: 'horses/:id', element: <Product /> }
+        { path: 'horses/:id', element: <Product /> },
+        { path: 'horses/:id/updateproduct', element: <UpdateProduct /> }
       ],
     },
 
@@ -35,10 +37,7 @@ export default function Router() {
       path: '404',
       element: <Suspense fallback={<div>Loading...</div>}><Page404 /></Suspense>,
     },
-    {
-      path: '*',
-      element: <Navigate to="/404" replace />,
-    },
+   
   ]);
 
   return routes;

@@ -1,6 +1,3 @@
-import PropTypes from "prop-types";
-
-
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
@@ -15,10 +12,14 @@ import { products } from '../../_mock/products';
 
 // ----------------------------------------------------------------------
 
+export default function ShopProductCard(props) {
+  const [url, setUrl] = useState();
+
+  useEffect(() => {
+    setUrl(`http://localhost:5173/horses/${props.id}`);
+  }, [props.id]);
 
 
-export default function ShopProductCard( props ) {
-  const [url, seturl] = useState();
 
   const renderImg = (
     <Box
@@ -35,83 +36,74 @@ export default function ShopProductCard( props ) {
         right: "0",
       }}
     />
-  )
-  useEffect(() => {
-    seturl(`http://localhost:5173/horses/${props.id}`);
-  }, []);
-  return(
-   <>
-   <br />
-    <Card sx={{ margin: "0 20px 0 20px", alignContent: "center"}}>
-    <Stack
-      direction={{ xs: "column", md: "row" }}
-      spacing={2}
-      sx={{
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-    >
-      <Box
-        sx={{
-          pl: 1,
-          pt: 1,
-          flexGrow: 1,
-        }}
-      >
-        <Stack
-          spacing={2}
-          sx={{ pl: 2, textAlign: { xs: "center", md: "left" } }}
-        >
-          <Link color="inherit" variant="subtitle2" noWrap underline="hover">
-            {props.name}
-           
-          </Link>
+  );
+  return (
+    <> 
+    
+      <br />
+      <Card>
 
-          <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent={{ xs: "center", md: "flex-start" }}
-          >
- 
-            {props.price} Kč
-       
-          </Stack>
-        </Stack>
         <Stack
+          direction={{ xs: "column", md: "row" }}
+          spacing={2}
           sx={{
-            p: 2,
-            textAlign: { xs: "center", md: "left" },
-            justifyContent: "center",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          <Typography sx={{ textOverflow: "ellipsis", overflow: "hidden", textWrap: {md: "nowrap", xs: "wrap"}, maxWidth: {xs: "350px", sm: "500px", lg: "500px",xl: "900px"}, maxHeight: "600px" }}>
-            {props.description}
-          </Typography>
-        </Stack>
-      </Box>
+          <Box
+            sx={{
+              pl: 1,
+              pt: 1,
+              flexGrow: 1,
+            }}
+          >
+            <Stack
+              spacing={2}
+              sx={{ pl: 2, textAlign: { xs: "center", md: "left" } }}
+            >
+              <Link color="inherit" variant="subtitle2" noWrap underline="hover">
+                {props.name}
+              </Link>
 
-      <Box
-        component={ReactLink}
-        to={url}
-        sx={{
-          order: { xs: 0, md: 1 },
+
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent={{ xs: "center", md: "flex-start" }}
+              >
+                {props.price} Kč
+              </Stack>
+            </Stack>
+            <Stack
+              sx={{
+                p: 2,
+                textAlign: { xs: "center", md: "left" },
+                justifyContent: "center",
+              }}
+            >
+              <Typography sx={{ textOverflow: "ellipsis", overflow: "hidden", textWrap: { md: "nowrap", sm: "wrap" }, maxWidth: { xs: "350px", sm: "600px" }, maxHeight: "100px" }}>
+                {props.description}
+              </Typography>
+            </Stack>
+          </Box>
+
+          <Box
+            component={ReactLink}
+            to={url}
+            sx={{
+              order: { xs: 0, md: 1 },
               flexGrow: 1,
               display: "flex",
               alignSelf: "stretch",
               alignItems: "center",
-              justifyContent: { xs: "center", md: "flex-end" },
               height: { xs: "auto", md: "20vh" },
-              textAlign: "center", 
-              paddingBottom: {xs: "20px" ,md: "0px"}
-        }}
-      >
-        {renderImg}
-      </Box>
-    </Stack>
-  </Card>
-  </>
-  )
- 
+            }}
+          >
+            {renderImg}
+          </Box>
+        </Stack>
+      </Card>
+    </>
+  );
 }
-
-

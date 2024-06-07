@@ -1,13 +1,10 @@
 // Product.jsx
 import React from 'react';
-import { getUpload } from "../models/Horse"
+import { getUpload, deleteUpload } from "../models/Horse"
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import SettingsIcon from "@mui/icons-material/Settings"
-import DeleteIcon from "@mui/icons-material/Delete"
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 
 function Product() {
     const {id} = useParams();
@@ -29,6 +26,11 @@ function Product() {
       setLoaded(null);
     }
   };
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    console.log(formData, id)
+  };
+ 
   /*const deletePost = async () => {
     try {
         const deleted = await deleteUpload(id, formData)
@@ -44,6 +46,38 @@ function Product() {
     load();
     console.log(productData)
   }, [])
+  const deletePost = async () => {
+    try {
+      if (!productData || formData.password !== productData.password) {
+        setInfo("Incorrect password or product data not loaded");
+        return;
+      }
+  
+      const deleted = await deleteUpload(id, formData);
+      if (!deleted || deleted.status !== 200) {
+        setInfo("Error deleting post");
+        navigate('/products');
+        return;
+      
+      }
+
+  
+      
+    } catch (error) {
+      console.error('Error deleting post:', error);
+      setInfo("Error deleting post");
+    }
+  };
+  const editPost = async () => {
+      if (formData.password == productData.password) {
+        setInfo("Incorrect password or product data not loaded");
+        navigate('updateproduct');
+        return;
+      
+    } 
+
+  }
+  
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -68,31 +102,10 @@ if (productData){
       <h1>Telefon: {productData.phonenumber}</h1>
       <h1>Lokace: {productData.location}</h1>
       <h1>Cena: {productData.price}</h1>
-      <Box textAlign= {{xs: "center", md: "left"}}>
-      <Button
-            variant="contained"
-            color="secondary"
-            startIcon={<SettingsIcon sx={{ fontSize: 16 }} />}
-            sx={{ width: { xs: "60%", md: "auto" }, marginRight: { xs: "0px", md: "20px" }, marginBottom: {xs: "10px", md: "0px"} }}
-          >
-            Upravit inzerát
-          </Button>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "red",
-              width: { xs: "60%", md: "auto" },
-              '&:hover': {
-                backgroundColor: "darkred", // Change to a darker red on hover
-              },
-              marginBottom: {xs: "20px", md: "0px"}
-            }}
-            startIcon={<DeleteIcon sx={{ fontSize: 16 }} />}
-          >
-            Odstranit inzerát
-      </Button>
-      </Box>
-        </Stack>
+
+      <h1>Kategorie : {productData.category}</h1>
+      //tlacitko na smazani postu zde fr
+
       <img
           style={{
             display: "block",
@@ -107,7 +120,26 @@ if (productData){
           alt={productData.postname}
           title={productData.postname}
         />
-      </Stack>
+   
+          <p className="control has-icons-left formInput">
+                <input placeholder="Zadejte heslo pro úpravu/odstranění" name="password" type="password" className="input" onChange={(e) => handleChange(e)}/>
+            </p>
+            <button
+          style={{ color: "#a31bf1", marginTop: "3rem", marginBottom: '3rem' }}
+          className="button"
+          onClick={deletePost}
+          
+        >
+          Odstranit
+        </button>
+        <button
+          style={{ color: "#a31bf1", marginTop: "3rem", marginBottom: '3rem' }}
+          className="button"
+          onClick={editPost}
+          
+        >
+          Upravit
+        </button>
 
     </div>
     </Box>

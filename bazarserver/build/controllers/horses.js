@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postUpload = exports.deleteHorse = exports.updateHorse = exports.createHorse = exports.getHorseById = exports.getAllHorses = void 0;
+exports.updateUpload = exports.postUpload = exports.deleteHorse = exports.updateHorse = exports.createHorse = exports.getHorseById = exports.getAllHorses = void 0;
 const bcrypt_1 = require("bcrypt");
 const index_1 = __importDefault(require("../models/index"));
 const Horses = index_1.default.horsetable;
@@ -40,7 +40,7 @@ const getHorseById = async (req, res) => {
 exports.getHorseById = getHorseById;
 const createHorse = async (req, res) => {
     try {
-        const { name, phonenumber, location, price, description, postname, photo } = req.body;
+        const { name, phonenumber, location, price, description, postname, password, category } = req.body;
         const post = await Horses.findOne({ where: { description: description } });
         if (post)
             return res.status(400).send({ message: "Post already exists" });
@@ -53,6 +53,8 @@ const createHorse = async (req, res) => {
             description: description,
             postname: postname,
             photo: "http://localhost:3000/img/" + req.file?.filename,
+            password: password,
+            category: category
         });
         return res.status(201).send({ message: "Post created" });
     }
@@ -65,8 +67,45 @@ exports.createHorse = createHorse;
 const updateHorse = async (req, res) => {
     try {
         const { id } = req.params;
-        const data = req.body;
-        if (!id || !data)
+        const data = [
+            {
+                propName: "name",
+                value: req.body.name
+            },
+            {
+                propName: "phonenumber",
+                value: req.body.phonenumber
+            },
+            {
+                propName: "location",
+                value: req.body.location
+            },
+            {
+                propName: "price",
+                value: req.body.price
+            },
+            {
+                propName: "description",
+                value: req.body.description
+            },
+            {
+                propName: "postname",
+                value: req.body.postname
+            },
+            {
+                propName: "password",
+                value: req.body.password
+            },
+            {
+                propName: "category",
+                value: req.body.category
+            },
+            {
+                propName: "photo",
+                value: "http://localhost:3000/img/" + req.file?.filename
+            }
+        ];
+        if (!id)
             return res.status(400).send({ message: "Missing details!" });
         const post = await Horses.findOne({ where: { id: id } });
         if (!post)
@@ -118,3 +157,4 @@ const saveFileIntoFolder = (req, res, next) => {
     });
 };
 exports.postUpload = [saveFileIntoFolder, exports.createHorse];
+exports.updateUpload = [saveFileIntoFolder, exports.updateHorse];

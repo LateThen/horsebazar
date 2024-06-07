@@ -40,7 +40,27 @@ export const getUpload = async (id) => {
     msg: data.msg,
   };
 };
-  
+export const deleteUpload = async (id, formData) => {
+  console.log(formData);
+  const res = await fetch(`http://localhost:3000/api/v1/horses/${id}`, {
+    method: "DELETE",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      password: formData.password,
+    }),
+  });
+}
+export const updateUpload = async (id, formData) => {
+  console.log(...formData);
+  const req = await fetch(`http://localhost:3000/api/v1/horses/${id}`, {
+    method: "PUT",
+    body: formData,
+  });
+  const data = await req.json();
+  return createUploadPayload(req, data);
+};
   export type Horse = {
     id?: string;
     name?: string;
@@ -50,6 +70,16 @@ export const getUpload = async (id) => {
     description?: string;
     postname?: string;
     photo? : string;
+    password? : string;
+    category? : string;
     //pridani obrazku
+  };
+  
+  const createUploadPayload = (req, data) => {
+    return {
+      msg: data.msg,
+      data: data.payload,
+      status: req.status,
+    };
   };
   

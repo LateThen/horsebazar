@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { createHorse } from "../../../models/Horse";
+import React, { useRef, useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { updateUpload, getUpload } from "../../models/Horse";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -14,17 +14,20 @@ import Typography from "@mui/material/Typography";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 
-export default function BlogView() {
+export default function UpdateProducts() {
   const [info, setInfo] = useState();
+  const [productData, setProductData] = useState();
   const [file, setFile] = useState(null);
   const [filePreview, setFilePreview] = useState("");
   const [formData, setFormData] = useState({});
   const [error, setError] = useState("");
   const [nazev, setNazev] = useState("");
   const [popis, setPopis] = useState("");
+  const [isLoaded, setLoaded] = useState(false);
   const navigate = useNavigate();
   const imgRef = useRef<HTMLInputElement>(null);
   const [category, setCategory] = useState("");
+  const { id } = useParams();
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -60,8 +63,8 @@ export default function BlogView() {
       formDataToSend.append(key, value);
     }
     formDataToSend.append("photo", imgRef.current.files[0]);
-    const post = await createHorse(formDataToSend);
-    if (post.status === 201) return navigate("/");
+    const post = await updateUpload(id, formDataToSend);
+    if (post.status === 200) return navigate("/");
     if (post.status === 500) return navigate("/");
   };
 
@@ -80,6 +83,31 @@ export default function BlogView() {
     imgRef.current.click();
   };
 
+  const load = async () => {
+    try {
+      const data = await getUpload(id);
+      console.log(data);
+      if (data.status === 200) {
+        setProductData(data.payload.post);
+        setLoaded(true);
+      } else {
+        setLoaded(null);
+      }
+    } catch (error) {
+      console.error("Error loading data:", error);
+      setLoaded(null);
+    }
+  };
+
+  useEffect(() => {
+    console.log(id);
+    load();
+  }, []);
+
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Container fixed>
       <form onSubmit={handleSubmit}>
@@ -91,17 +119,14 @@ export default function BlogView() {
                 label="Jméno"
                 name="name"
                 autoComplete="name"
+                placeholder={productData.name}
                 sx={{ marginBottom: 2 }}
                 required
                 fullWidth
                 onChange={handleChange}
-                color="secondary"
               />
               <FormControl required fullWidth>
-                <InputLabel
-                  htmlFor="outlined-adornment-amount"
-                  color="secondary"
-                >
+                <InputLabel htmlFor="outlined-adornment-amount">
                   Telefon
                 </InputLabel>
                 <OutlinedInput
@@ -110,13 +135,12 @@ export default function BlogView() {
                     <InputAdornment position="start">+420</InputAdornment>
                   }
                   label="Telefon"
-                  placeholder="123456789"
                   name="phonenumber"
                   onChange={handleChange}
-                  color="secondary"
+                  placeholder={productData.phonenumber.toString()}
                   inputProps={{
                     inputMode: "numeric",
-                    pattern: "[0-9]{9}",
+                    pattern: "[0-9]*",
                     maxLength: 9,
                   }}
                   sx={{ marginBottom: 2 }}
@@ -131,10 +155,10 @@ export default function BlogView() {
                 name="location"
                 autoComplete="location"
                 onChange={handleChange}
-                color="secondary"
+                placeholder={productData.location}
               />
               <FormControl required fullWidth>
-                <InputLabel htmlFor="outlined-adornment-amount" color="secondary">
+                <InputLabel htmlFor="outlined-adornment-amount">
                   Cena
                 </InputLabel>
                 <OutlinedInput
@@ -145,7 +169,7 @@ export default function BlogView() {
                   label="Cena"
                   name="price"
                   onChange={handleChange}
-                  color="secondary"
+                  placeholder={productData.price.toString()}
                   inputProps={{
                     inputMode: "numeric",
                     pattern: "[0-9]*",
@@ -178,19 +202,14 @@ export default function BlogView() {
                 name="password"
                 autoComplete="password"
                 onChange={handleChange}
-                color="secondary"
               />
-
               <FormControl fullWidth required>
-                <InputLabel id="demo-simple-select-label" color="secondary">
-                  Kategorie
-                </InputLabel>
+                <InputLabel id="demo-simple-select-label">Kategorie</InputLabel>
                 <Select
                   id="category"
                   name="category"
                   value={category}
                   label="category"
-                  color="secondary"
                   onChange={handleChange}
                 >
                   <MenuItem value={"Závodní kůň"}>Závodní kůň</MenuItem>
@@ -232,6 +251,7 @@ export default function BlogView() {
                 id="postname"
                 label="Název"
                 name="postname"
+                placeholder={productData.postname}
                 sx={{ marginTop: 2 }}
                 inputProps={{ maxLength: 64 }}
                 fullWidth
@@ -241,7 +261,6 @@ export default function BlogView() {
                 maxRows={3}
                 value={nazev}
                 onChange={handleChange}
-                color="secondary"
               />
               <Typography
                 variant="caption"
@@ -277,9 +296,9 @@ export default function BlogView() {
             type="description"
             id="description"
             autoComplete="new-description"
+            placeholder={productData.description}
             value={popis}
             onChange={handleChange}
-            color="secondary"
           />
           <Typography
             variant="caption"
@@ -295,7 +314,7 @@ export default function BlogView() {
           </Typography>
         </Box>
         <Button variant="contained" type="submit" size="large" fullWidth>
-          Vytvořit inzerát
+          Aktualizovat inzerát
         </Button>
       </form>
     </Container>
