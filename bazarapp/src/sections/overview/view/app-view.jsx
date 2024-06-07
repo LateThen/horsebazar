@@ -34,6 +34,7 @@ export default function AppView() {
           width: "100%",
           height: "100%",
           objectFit: "cover",
+          marginLeft: {xs: "0px", md: "4px"}
         }}
       />
       <Box sx={{ position: "absolute", top: { lg: "98%", xs: "200px" } }} width="1">
@@ -59,7 +60,7 @@ export default function AppView() {
             transition: "opacity 2s",
           }}
         >
-          <ReactLink to={"/products"}>
+          <ReactLink to={"/createpost"}>
             <img src="../../src/img/sellHorseButton.png" alt="Prodat Koně" />
           </ReactLink>
         </Button>

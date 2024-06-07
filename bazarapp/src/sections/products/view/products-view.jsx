@@ -37,26 +37,20 @@ export default function ProductsView() {
       </>
     );
   }
+  
   return (
     <>
-      
-      <h1>Horses</h1>
+      <Typography variant="h2" sx={{textAlign: "center", fontFamily: "Comic Sans MS" }}>
+        The Horse Black Market
+      </Typography>
+
       {isLoaded ? (
         uploads.map((upload, index) => <ShopProductCard key={index} {...upload} />)
       ) : (
-        <p>Loading</p>
+        <p>Loading...</p>
       )}
         <p style={{ marginLeft: "300px", paddingLeft: "16px" }}>
         </p>
-        <Stack
-        direction="row"
-        alignItems="center"
-        flexWrap="wrap-reverse"
-        justifyContent="flex-end"
-        sx={{ mb: 5 }}>
-    </Stack>
-    
-        
      
     </>
   );
