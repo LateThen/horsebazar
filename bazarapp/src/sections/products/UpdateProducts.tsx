@@ -124,9 +124,10 @@ export default function UpdateProducts() {
                 required
                 fullWidth
                 onChange={handleChange}
+                color="secondary"
               />
               <FormControl required fullWidth>
-                <InputLabel htmlFor="outlined-adornment-amount">
+                <InputLabel htmlFor="outlined-adornment-amount" color="secondary">
                   Telefon
                 </InputLabel>
                 <OutlinedInput
@@ -144,6 +145,7 @@ export default function UpdateProducts() {
                     maxLength: 9,
                   }}
                   sx={{ marginBottom: 2 }}
+                  color="secondary"
                 />
               </FormControl>
               <TextField
@@ -156,9 +158,10 @@ export default function UpdateProducts() {
                 autoComplete="location"
                 onChange={handleChange}
                 placeholder={productData.location}
+                color="secondary"
               />
               <FormControl required fullWidth>
-                <InputLabel htmlFor="outlined-adornment-amount">
+                <InputLabel htmlFor="outlined-adornment-amount" color="secondary">
                   Cena
                 </InputLabel>
                 <OutlinedInput
@@ -175,6 +178,7 @@ export default function UpdateProducts() {
                     pattern: "[0-9]*",
                     maxLength: 9,
                   }}
+                  color="secondary"
                 />
               </FormControl>
               <Box mt="25px" mb="25px">
@@ -202,15 +206,17 @@ export default function UpdateProducts() {
                 name="password"
                 autoComplete="password"
                 onChange={handleChange}
+                color="secondary"
               />
               <FormControl fullWidth required>
-                <InputLabel id="demo-simple-select-label">Kategorie</InputLabel>
+                <InputLabel id="demo-simple-select-label" color="secondary">Kategorie</InputLabel>
                 <Select
                   id="category"
                   name="category"
                   value={category}
                   label="category"
                   onChange={handleChange}
+                  color="secondary"
                 >
                   <MenuItem value={"Závodní kůň"}>Závodní kůň</MenuItem>
                   <MenuItem value={"Kůň na chov"}>Kůň na chov</MenuItem>
@@ -261,6 +267,7 @@ export default function UpdateProducts() {
                 maxRows={3}
                 value={nazev}
                 onChange={handleChange}
+                color="secondary"
               />
               <Typography
                 variant="caption"
@@ -299,6 +306,7 @@ export default function UpdateProducts() {
             placeholder={productData.description}
             value={popis}
             onChange={handleChange}
+            color="secondary"
           />
           <Typography
             variant="caption"
