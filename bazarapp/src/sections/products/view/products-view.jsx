@@ -55,10 +55,11 @@ export default function ProductsView() {
         <MenuItem value={"Kůň na chov"}>Kůň na chov</MenuItem>
         <MenuItem value={"Kůň ke konzumaci"}>Kůň ke konzumaci</MenuItem>
       </Select>
+
       {isLoaded ? (
         filteredUploads.map((upload, index) => <ShopProductCard key={index} {...upload} />)
       ) : (
-        <p>Loading</p>
+        <p>Loading...</p>
       )}
       <p style={{ marginLeft: "300px", paddingLeft: "16px" }}></p>
       <Stack
@@ -69,6 +70,7 @@ export default function ProductsView() {
         sx={{ mb: 5 }}
       >
       </Stack>
+
     </>
   );
 }

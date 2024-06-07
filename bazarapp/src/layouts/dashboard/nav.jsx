@@ -23,6 +23,9 @@ import Scrollbar from "../../components/scrollbar";
 import { NAV } from "./config-layout";
 import navConfig from "./config-navigation";
 
+import Advertisement from "../../components/advertisement/advertisement";
+import { primary } from "../../theme/palette";
+
 // ----------------------------------------------------------------------
 
 export default function Nav({ openNav, onCloseNav }) {
@@ -37,36 +40,14 @@ export default function Nav({ openNav, onCloseNav }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
-  const renderAccount = (
-    <Box
-      sx={{
-        my: 3,
-        mx: 2.5,
-        py: 2,
-        px: 2.5,
-        display: "flex",
-        borderRadius: 1.5,
-        alignItems: "center",
-        bgcolor: (theme) => alpha(theme.palette.grey[500], 0.12),
-      }}
-    >
-      <Avatar src={account.photoURL} alt="photoURL" />
-
-      <Box sx={{ ml: 2 }}>
-        <Typography variant="subtitle2">{account.displayName}</Typography>
-
-        <Typography variant="body2" sx={{ color: "text.secondary" }}>
-          {account.role}
-        </Typography>
-      </Box>
-    </Box>
-  );
+  
 
   const renderMenu = (
-    <Stack component="nav" spacing={0.5} sx={{ px: 2 }}>
+    <Stack component="nav" spacing={0.5} sx={{ px: 2 }} marginTop="10px">
       {navConfig.map((item) => (
         <NavItem key={item.title} item={item} />
       ))}
+      <Advertisement/>
     </Stack>
   );
 
@@ -84,8 +65,6 @@ export default function Nav({ openNav, onCloseNav }) {
       }}
     >
       <Logo sx={{ mt: 3}} />
-
-      {renderAccount}
 
       {renderMenu}
 
@@ -120,6 +99,8 @@ export default function Nav({ openNav, onCloseNav }) {
           PaperProps={{
             sx: {
               width: NAV.WIDTH,
+              backgroundColor: primary.dark,
+              backgroundImage: "none"
             },
           }}
         >

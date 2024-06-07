@@ -28,8 +28,12 @@ export default function ShopProductCard(props) {
       src={props.photo}
       sx={{
         height: "100%",
+        maxHeight: "300px",
+        minHeight: "200px",
         objectFit: "cover",
-        width: "100%",
+        width: {xs: "50%", md: "20%"},
+        position: {xs: "none" , md: "absolute"},
+        right: "0",
       }}
     />
   );
@@ -38,6 +42,7 @@ export default function ShopProductCard(props) {
     
       <br />
       <Card>
+
         <Stack
           direction={{ xs: "column", md: "row" }}
           spacing={2}
@@ -60,6 +65,7 @@ export default function ShopProductCard(props) {
               <Link color="inherit" variant="subtitle2" noWrap underline="hover">
                 {props.name}
               </Link>
+
 
               <Stack
                 direction="row"

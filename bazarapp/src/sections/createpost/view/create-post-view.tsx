@@ -95,9 +95,13 @@ export default function BlogView() {
                 required
                 fullWidth
                 onChange={handleChange}
+                color="secondary"
               />
               <FormControl required fullWidth>
-                <InputLabel htmlFor="outlined-adornment-amount">
+                <InputLabel
+                  htmlFor="outlined-adornment-amount"
+                  color="secondary"
+                >
                   Telefon
                 </InputLabel>
                 <OutlinedInput
@@ -106,11 +110,13 @@ export default function BlogView() {
                     <InputAdornment position="start">+420</InputAdornment>
                   }
                   label="Telefon"
+                  placeholder="123456789"
                   name="phonenumber"
                   onChange={handleChange}
+                  color="secondary"
                   inputProps={{
                     inputMode: "numeric",
-                    pattern: "[0-9]*",
+                    pattern: "[0-9]{9}",
                     maxLength: 9,
                   }}
                   sx={{ marginBottom: 2 }}
@@ -125,9 +131,10 @@ export default function BlogView() {
                 name="location"
                 autoComplete="location"
                 onChange={handleChange}
+                color="secondary"
               />
               <FormControl required fullWidth>
-                <InputLabel htmlFor="outlined-adornment-amount">
+                <InputLabel htmlFor="outlined-adornment-amount" color="secondary">
                   Cena
                 </InputLabel>
                 <OutlinedInput
@@ -138,6 +145,7 @@ export default function BlogView() {
                   label="Cena"
                   name="price"
                   onChange={handleChange}
+                  color="secondary"
                   inputProps={{
                     inputMode: "numeric",
                     pattern: "[0-9]*",
@@ -170,15 +178,19 @@ export default function BlogView() {
                 name="password"
                 autoComplete="password"
                 onChange={handleChange}
+                color="secondary"
               />
 
               <FormControl fullWidth required>
-                <InputLabel id="demo-simple-select-label">Kategorie</InputLabel>
+                <InputLabel id="demo-simple-select-label" color="secondary">
+                  Kategorie
+                </InputLabel>
                 <Select
                   id="category"
                   name="category"
                   value={category}
                   label="category"
+                  color="secondary"
                   onChange={handleChange}
                 >
                   <MenuItem value={"Závodní kůň"}>Závodní kůň</MenuItem>
@@ -229,6 +241,7 @@ export default function BlogView() {
                 maxRows={3}
                 value={nazev}
                 onChange={handleChange}
+                color="secondary"
               />
               <Typography
                 variant="caption"
@@ -266,6 +279,7 @@ export default function BlogView() {
             autoComplete="new-description"
             value={popis}
             onChange={handleChange}
+            color="secondary"
           />
           <Typography
             variant="caption"

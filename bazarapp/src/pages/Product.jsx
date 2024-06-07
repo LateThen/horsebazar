@@ -6,8 +6,6 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import SettingsIcon from "@mui/icons-material/Settings"
 
-
-
 function Product() {
     const {id} = useParams();
     const [productData, setProductData] = useState();
@@ -93,29 +91,36 @@ function Product() {
 if (productData){
     console.log(productData)
   return (
+    <Box>
     <div>
       <h1>Název inzerátu: {productData.postname}</h1>
       <h1>Popisek: {productData.description}</h1>
+
+      <Stack direction={{ md: "row", xs: "column" }} spacing={1}>
+        <Stack direction="column" spacing={1}>
       <h1>Jméno přidavatele inzerátu: {productData.name}</h1>
       <h1>Telefon: {productData.phonenumber}</h1>
       <h1>Lokace: {productData.location}</h1>
       <h1>Cena: {productData.price}</h1>
+
       <h1>Kategorie : {productData.category}</h1>
       //tlacitko na smazani postu zde fr
+
       <img
           style={{
             display: "block",
             marginLeft: "auto",
             marginRight: "auto",
             textAlign: "center",
-            width: "40%",
+            width: "100%",
+            maxWidth: "300px"
           }}
           className="article-img"
           src={productData.photo}
           alt={productData.postname}
           title={productData.postname}
         />
-    
+   
           <p className="control has-icons-left formInput">
                 <input placeholder="Zadejte heslo pro úpravu/odstranění" name="password" type="password" className="input" onChange={(e) => handleChange(e)}/>
             </p>
@@ -135,7 +140,9 @@ if (productData){
         >
           Upravit
         </button>
+
     </div>
+    </Box>
   );
 }
 }

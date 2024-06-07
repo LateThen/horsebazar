@@ -16,11 +16,6 @@ const navConfig = [
     icon: icon("ic_analytics"),
   },
   {
-    title: "My Posts",
-    path: "/mypost",
-    icon: icon("ic_user"),
-  },
-  {
     title: "Create Post",
     path: "/createpost",
     icon: icon("ic_cart"),

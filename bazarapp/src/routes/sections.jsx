@@ -25,7 +25,6 @@ export default function Router() {
       ),
       children: [
         { element: <IndexPage />, index: true },
-        { path: 'mypost', element: <MyPostPage /> },
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
         { path: 'createpost', element: <CreatePost /> },
@@ -33,17 +32,8 @@ export default function Router() {
         { path: 'horses/:id/updateproduct', element: <UpdateProduct /> }
       ],
     },
-    {
 
-      path: 'login',
-      element: <Suspense fallback={<div>Loading...</div>}><LoginPage /></Suspense>,
-    },
     {
-      path: 'register',
-      element: <Suspense fallback={<div>Loading...</div>}><RegisterPage /></Suspense>,
-    },
-    {
-
       path: '404',
       element: <Suspense fallback={<div>Loading...</div>}><Page404 /></Suspense>,
     },
