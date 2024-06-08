@@ -97,7 +97,10 @@ export default function ShopProductCard(props) {
               display: "flex",
               alignSelf: "stretch",
               alignItems: "center",
+              justifyContent: { xs: "center", md: "flex-end" },
               height: { xs: "auto", md: "20vh" },
+              textAlign: "center", 
+              paddingBottom: {xs: "20px" ,md: "0px"}
             }}
           >
             {renderImg}
