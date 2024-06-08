@@ -49,7 +49,7 @@ export default function BlogView() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+    console.log("Form data before submission:", formData);
     if (!file) {
       setError("Obrázek je povinný");
       return;
@@ -64,17 +64,22 @@ export default function BlogView() {
     if (post.status === 201) return navigate("/");
     if (post.status === 500) return navigate("/");
   };
-
-  const handleChange = (e) => {
+const handleChange = (e) => {
+  if (e.target.name === "price" || e.target.name === "phonenumber") {
+    const numericValue = e.target.value.replace(/[^\d]/g, '');
+    setFormData({ ...formData, [e.target.name]: numericValue });
+  } else {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    if (e.target.name === "postname") {
-      setNazev(e.target.value);
-    } else if (e.target.name === "description") {
-      setPopis(e.target.value);
-    } else if (e.target.name === "category") {
-      setCategory(e.target.value);
-    }
-  };
+  }
+
+  if (e.target.name === "postname") {
+    setNazev(e.target.value);
+  } else if (e.target.name === "description") {
+    setPopis(e.target.value);
+  } else if (e.target.name === "category") {
+    setCategory(e.target.value);
+  }
+};
 
   const handleButtonClick = () => {
     imgRef.current.click();

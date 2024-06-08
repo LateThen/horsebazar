@@ -13,7 +13,7 @@ module.exports = (sequelize: any, Sequelize: any) => {
         allowNull: false
       },
       phonenumber: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.STRING,
         allowNull: false
       },
       location: {
@@ -21,7 +21,7 @@ module.exports = (sequelize: any, Sequelize: any) => {
         allowNull: false
       },
       price: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.STRING,
         allowNull: false
       },
       description: {
