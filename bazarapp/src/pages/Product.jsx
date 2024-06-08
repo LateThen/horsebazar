@@ -89,7 +89,7 @@ function Product() {
                 <h1>Jméno přidavatele inzerátu: {productData.name}</h1>
                 <h1>Telefon: {productData.phonenumber}</h1>
                 <h1>Lokace: {productData.location}</h1>
-                <h1>Cena: {productData.price}</h1>
+                <h1>Cena: {productData.price} Kč</h1>
                 <h1>Kategorie: {productData.category}</h1>
 
                 <Box textAlign= {{xs: "center", md: "left"}} width="100%">
@@ -146,6 +146,7 @@ function Product() {
                   textAlign: "center",
                   width: "100%",
                   maxWidth: "300px",
+                  height: "100%"
                 }}
                 className="article-img"
                 src={productData.photo}

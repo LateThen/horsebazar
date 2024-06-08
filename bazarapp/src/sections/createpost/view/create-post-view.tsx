@@ -280,6 +280,7 @@ export default function BlogView() {
             value={popis}
             onChange={handleChange}
             color="secondary"
+            required
           />
           <Typography
             variant="caption"

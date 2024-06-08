@@ -141,7 +141,7 @@ export default function UpdateProducts() {
                   placeholder={productData.phonenumber.toString()}
                   inputProps={{
                     inputMode: "numeric",
-                    pattern: "[0-9]*",
+                    pattern: "[0-9]{9}",
                     maxLength: 9,
                   }}
                   sx={{ marginBottom: 2 }}
@@ -307,6 +307,7 @@ export default function UpdateProducts() {
             value={popis}
             onChange={handleChange}
             color="secondary"
+            required
           />
           <Typography
             variant="caption"
