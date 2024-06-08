@@ -10,10 +10,10 @@ export default function Advertisement() {
 
   useEffect(() => {
     const images = [
-      "../../src/img/HeavyTF2.png",
-      "../../src/img/logo.png",
-      "../../src/img/logoImage.png",
       "../../src/img/SaskaGoblin.png",
+      "../../src/img/advertisement1.png",
+      "../../src/img/advertisement2.png",
+      "../../src/img/advertisement3.png",
     ];
     const urls = [
       "https://github.com/VojtaKdo",
@@ -129,7 +129,7 @@ export default function Advertisement() {
   }, [location]);
 
   return (
-    <Box width="1" pt="40%">
+    <Box width="1" pt="40%" textAlign="center">
       <Typography variant="h3" fontFamily="Comic Sans MS" textAlign="center">
         Reklama
       </Typography>
